@@ -25,6 +25,7 @@ public class GUI extends JFrame {
 
 	private JLayeredPane contentPane;
 	private Juego j;
+	private boolean BORRARESTAVARIABLE;
 
 	/**
 	 * Launch the application.
