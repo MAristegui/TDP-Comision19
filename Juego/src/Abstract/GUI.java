@@ -19,7 +19,7 @@ import Mapa.Mapa;
 import resources.*;
 import java.awt.event.KeyEvent;
 import java.util.Random;
-// Commit
+// Commit hola
 public class GUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 
