@@ -7,7 +7,7 @@ import java.util.*;
 import Mapa.Celda;
 
 public abstract class Unidad extends ObjetoLogico{
-    
+    //probando =)
 	//atributos
 	protected int velocidad;
 	protected Icon[] Imagen;
