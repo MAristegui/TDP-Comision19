@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import Abstract.Tanque;
+import Abstract.Visitor;
 public class Jugador extends Tanque{
     //atributos
 	private int vidas;
@@ -14,6 +15,7 @@ public class Jugador extends Tanque{
 	//constructor
 	public Jugador(int velocidad,int resistencia, int vidas,Celda c){
 		super(velocidad,resistencia,c);
+		V= new VisitorJugador(this);
 		this.vidas=vidas;
 		this.Imagen=new Icon[4];
 		this.Imagen[2] = new ImageIcon(this.getClass().getResource("/resources/playerUp.gif"));
@@ -33,7 +35,31 @@ public class Jugador extends Tanque{
 		return puntaje;
 	}
 	
+
 	//metodos
+
+	@Override
+	public boolean Aceptar(Visitor V) {
+		return (V.VisitPlayer(this));
+	
+	}
+	
+	public void AumentarDisparos(){
+		cantDisparos++;
+	}
+
+	@Override
+	public void run() {
+		while(true){
+			if (resistencia==0)
+				//vida--; "segundos de invunerabilidad".
+			if (vidas==0) {
+				System.out.println("SOS PUTO JAJAJJA");
+				IsRunnable=false;
+			}
+		}
+		
+	}
 	
 	
 }

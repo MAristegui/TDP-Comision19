@@ -2,6 +2,7 @@ package PowerUp;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import Abstract.*;
+import Jugador.Jugador;
 import Mapa.*;
 
 import resources.*;
@@ -10,10 +11,14 @@ import Mapa.*;
 public abstract class PowerUp extends ObjetoLogico {
 	
 	protected PowerUp(Celda c){
-		grafico=new JLabel();
-		grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/playerUp.gif")));
 		celda=c;
 	}
-	public abstract boolean Colision(ObjetoLogico o);
+	public boolean Aceptar(Visitor V) {
+		V.VisitPowerUp(this);
+		return true;
+	}
+	public abstract void AplicarPowerUP(Jugador J);
+
 
 }
+

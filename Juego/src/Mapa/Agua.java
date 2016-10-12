@@ -11,9 +11,8 @@ public class Agua extends ObjetoLogico{
     	
     }
     
-    public boolean Colision(ObjetoLogico o)
-    {
-    	return false;
-    }
+	public boolean Aceptar(Visitor V) {
+		return (V.VisitAgua(this));
+	}
 }
 

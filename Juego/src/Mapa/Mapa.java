@@ -5,6 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URISyntaxException;
+
+import Enemigo.Enemigo;
+
 import java.io.File;
 public class Mapa {
     private Celda[][] celdas;
@@ -23,6 +26,11 @@ public class Mapa {
     }
     public Celda[][] getCeldas(){
     	return celdas;
+    }
+    
+    public void EliminarEnemigo(Enemigo e){
+    	
+    	
     }
     public Celda getCelda(int x,int y){
     	if (celdas[x][y]==null)

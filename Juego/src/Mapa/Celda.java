@@ -1,6 +1,7 @@
 package Mapa;
 
 import Abstract.ObjetoLogico;
+import Enemigo.Enemigo;
 import PowerUp.AumentarDisparo;
 import PowerUp.PowerUp;
 
@@ -51,6 +52,9 @@ public  class Celda  {
     public Celda getCelda(int x,int y)
     {
     	return map.getCelda(x,y);
+    	
+    }
+    public void eliminarEnemigo(Enemigo E){
     	
     }
 }

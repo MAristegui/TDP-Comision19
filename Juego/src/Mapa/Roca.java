@@ -12,13 +12,9 @@ public class Roca extends ObjetoLogico{
     	grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/Roca.png")));
     	
     }
-	/* public boolean Colision(Disparo d){
-		System.out.println("EHAEHAEEE");
-		return true;
-		}*/
-		
-    public boolean Colision(ObjetoLogico o){
-    	System.out.println("sos puto eh");
-    	return false;
-    }
+	@Override
+	public boolean Aceptar(Visitor V) {
+		return V.VisitRoca(this);
+	}
+	
 }
