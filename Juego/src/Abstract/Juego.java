@@ -4,20 +4,24 @@ import javax.swing.*;
 import Jugador.Jugador;
 
 import java.awt.event.*;
-
+import Enemigo.*;
 import Mapa.Mapa;
 import resources.*;
 import java.awt.event.KeyEvent;
+import java.util.Collection;
 import java.util.Random;
 import Mapa.*;
 public class Juego {
 	private Jugador jugador;
+	private Enemigo E;
 	private Mapa map;
 	private Celda[][] celdas;
 	private Timer t;
 	private GUI gui;
+	private Juego J;
 	private int contTiempo;
 	private boolean moviendo=false;
+	private Collection Enemigos;
 	public Juego(final GUI gui){
 		contTiempo=0;
 		this.gui=gui;
@@ -25,12 +29,15 @@ public class Juego {
 		celdas=map.getCeldas();
 		JLabel fondo=new JLabel(new ImageIcon(this.getClass().getResource("/resources/FondoMapa2.png")));
 		fondo.setBounds(0, 0, 640, 640);
+		J=this;
 		gui.add(fondo,new Integer(-1));
 		jugador = new Jugador(5,3,1,celdas[8][8]);
+		new Thread(jugador).start();
 		JLabel graficoJugador= jugador.getGrafico();
 		graficoJugador.setOpaque(false);
 		gui.add(graficoJugador,new Integer(1));
 		graficoJugador.setBounds(celdas[8][8].getX()*32,celdas[8][8].getY()*32,32,32);
+		
 		for(int i=0;i<celdas.length;i++)
 			for(int j=0;j<celdas[0].length;j++)
 						{
@@ -61,16 +68,19 @@ public class Juego {
 		AgregarEnemigo.setFocusable(false);
 		AgregarEnemigo.addActionListener(new ActionListener() { 
 			  public void actionPerformed(ActionEvent e) { 
-				  Enemigo enemigoPrueba=new Enemigo(5,3,celdas[9][9],200);
+				  Enemigo enemigoPrueba=new EnemigoBasico(5,3,celdas[9][9],200,J);
+				  new Thread(enemigoPrueba).start();
 				  celdas[9][9].setObject(enemigoPrueba);
 				    JLabel graficoEnemigo= enemigoPrueba.getGrafico();
 					graficoEnemigo.setOpaque(false);
-					gui.add(graficoEnemigo,new Integer(1));
+					gui.add(graficoEnemigo,new Integer(4));
 					graficoEnemigo.setBounds(celdas[9][9].getX()*32,celdas[9][9].getY()*32,32,32);
+					E=enemigoPrueba;
 					AgregarEnemigo.setVisible(false);
 					AgregarEnemigo.setEnabled(false);
 					EliminarEnemigo.setVisible(true);
 					EliminarEnemigo.setEnabled(true);
+					gui.repaint();
 				  } 
 				} );
 		EliminarEnemigo.addActionListener(new ActionListener() { 
@@ -141,6 +151,10 @@ public class Juego {
 			moviendo=true;
 		int direccion = 0;
 		switch (dir){
+			case KeyEvent.VK_SPACE :
+				System.out.println("ROBERTO");
+				jugador.disparar();	
+				break;
 			case KeyEvent.VK_UP : //Arriba
 				direccion = 2;
 				break;
@@ -212,4 +226,91 @@ public class Juego {
 		
 	}
 
+	private void mAMA(int dir){
+		JLabel graficoEnemigo= E.getGrafico();
+		if(dir==2&&contTiempo!=32){
+			graficoEnemigo.setBounds(graficoEnemigo.getBounds().x,graficoEnemigo.getBounds().y-1,32,32);
+			contTiempo++;
+		}
+		else
+			if(dir==1&&contTiempo!=32){
+				graficoEnemigo.setBounds(graficoEnemigo.getBounds().x-1,graficoEnemigo.getBounds().y,32,32);	
+			contTiempo++;				
+			}
+			else
+				if(dir==3&&contTiempo!=32){
+					graficoEnemigo.setBounds(graficoEnemigo.getBounds().x+1,graficoEnemigo.getBounds().y,32,32);	
+				contTiempo++;
+				}
+				else
+					if(dir==0&&contTiempo!=32){
+						graficoEnemigo.setBounds(graficoEnemigo.getBounds().x,graficoEnemigo.getBounds().y+1,32,32);	
+					contTiempo++;
+					}
+		if(contTiempo==32){
+			t.stop();
+			contTiempo=0;
+		}
+	}
+	public void MOIE(int dir){
+		
+		boolean puedoMover=E.mover(dir);
+	
+	if(puedoMover)
+		switch(dir){
+		case 2:
+		ActionListener accion2= new ActionListener(){
+			public void actionPerformed(ActionEvent actionEvent){
+				mAMA(2);
+			}
+		};
+      
+		t=new Timer(3,accion2);
+        t.start();
+   //     gui.repaint();
+
+		break;
+		case 1:
+			ActionListener accion1= new ActionListener(){
+				public void actionPerformed(ActionEvent actionEvent){
+				mAMA(1);
+				}
+			};
+	      
+			t=new Timer(3,accion1);
+	        t.start();
+	      //  gui.repaint();	
+		break;
+		case 0: ActionListener accion0= new ActionListener(){
+				public void actionPerformed(ActionEvent actionEvent){
+					mAMA(0);
+				}
+			};
+	      
+			t=new Timer(3,accion0);
+	        t.start();
+	       // gui.repaint();
+		break;
+		case 3: ActionListener accion3= new ActionListener(){
+				public void actionPerformed(ActionEvent actionEvent){
+					mAMA(3);
+				}
+			};
+	      
+			t=new Timer(3,accion3);
+	        t.start();
+	       // gui.repaint();
+	        break;
+		}
+	else
+		moviendo=false;
+	
+	
+	
 }
+	
+}
+
+
+
+

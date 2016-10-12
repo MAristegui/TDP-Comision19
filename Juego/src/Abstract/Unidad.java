@@ -6,16 +6,19 @@ import javax.swing.JLabel;
 import java.util.*;
 import Mapa.Celda;
 
-public abstract class Unidad extends ObjetoLogico{
-    //probando =)
+public abstract class Unidad extends ObjetoLogico implements Runnable {
+    
 	//atributos
 	protected int velocidad;
 	protected Icon[] Imagen;
+	protected boolean IsRunnable;
+	
 //	
 
 	protected int dirActual;
 	//constructor
-	protected Unidad(int v,Celda C){
+	protected Unidad(int v,Celda C) {
+		IsRunnable=true;
 		velocidad=v;
 		celda=C;
 	//	disparos=new LinkedList<DisparoA>();
@@ -65,7 +68,7 @@ public abstract class Unidad extends ObjetoLogico{
 					if(C.getObject()==null)
 						aXb(C);
 					else
-						if(C.getObject().Colision(this))
+						if(C.getObject().Aceptar(this.V))
 							aXb(C);
 						else
 							puedo=false;
@@ -81,7 +84,7 @@ public abstract class Unidad extends ObjetoLogico{
 					if(C.getObject()==null)
 						aXb(C);
 					else
-						if(C.getObject().Colision(this))
+						if(C.getObject().Aceptar(this.V))
 							aXb(C);
 						else
 							puedo=false;
@@ -97,7 +100,7 @@ public abstract class Unidad extends ObjetoLogico{
 					if(C.getObject()==null)
 						aXb(C);
 					else
-						if(C.getObject().Colision(this))
+						if(C.getObject().Aceptar(this.V))
 							aXb(C);
 						else
 							puedo=false;
@@ -113,7 +116,7 @@ public abstract class Unidad extends ObjetoLogico{
 					if(C.getObject()==null)
 						aXb(C);
 					else
-						if(C.getObject().Colision(this))
+						if(C.getObject().Aceptar(this.V))
 							aXb(C);
 						else
 							puedo=false;
@@ -129,9 +132,5 @@ public abstract class Unidad extends ObjetoLogico{
     	return puedo;
 	
 }
-public boolean Colision(ObjetoLogico o){
-	return o.Colision(this);
-}
-	
-	
+
 }

@@ -19,13 +19,12 @@ import Mapa.Mapa;
 import resources.*;
 import java.awt.event.KeyEvent;
 import java.util.Random;
-// Commit hola b
+
 public class GUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private JLayeredPane contentPane;
 	private Juego j;
-	// private boolean BORRARESTAVARIABLE2;
 
 	/**
 	 * Launch the application.

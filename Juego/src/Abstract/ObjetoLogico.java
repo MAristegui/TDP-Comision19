@@ -13,14 +13,14 @@ public abstract class ObjetoLogico{
 	protected Celda celda;
     protected static final int width=32;
     protected static final int height=32;
-    
+    protected Visitor V;
     public JLabel getGrafico(){
     	return grafico;}
     public void setGraph(ImageIcon i){
     	grafico.setIcon(i);
     }
     
-   public abstract boolean Colision(ObjetoLogico o);
+   public abstract boolean Aceptar(Visitor V);
    
    public void destruir(){
 	  setGraph(null);

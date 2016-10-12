@@ -4,20 +4,18 @@ import Mapa.Celda;
 
 public abstract class Disparo extends Unidad{
 	
-	
-private Unidad u;
 
-public Disparo(int v, int r, Celda c, Unidad u2) {
+protected boolean movido;
+protected Unidad u;
+
+public Disparo(int v, int r, Celda c, Unidad u) {
 	super(v,c);
 	this.u=u;
+	movido=false;
 }
-
-public boolean Colision(ObjetoLogico o)
+public Tanque getTanque()
 {
-	Unidad aux=(Unidad) o;
-	//aux.disminuirVida();
-	return true;
+	return (Tanque) u;
 }
-
 
 }

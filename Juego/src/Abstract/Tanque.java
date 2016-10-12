@@ -4,7 +4,7 @@ import java.util.*;
 
 import javax.swing.JLabel;
 
-public class Tanque extends Unidad {
+public abstract class Tanque extends Unidad {
 
 	protected int cantDisparos;
 	protected List<DisparoA> disparos; 
@@ -13,6 +13,8 @@ public class Tanque extends Unidad {
 	protected Tanque(int v,int r,Celda c){
 	super(v,c);
 	resistencia=r;
+	disparos= new LinkedList<DisparoA>();
+	
 	}
 	
 	public int getResistencia(){
@@ -22,7 +24,7 @@ public class Tanque extends Unidad {
 		resistencia=r;
 	}
  
-    /* protected void Aumentardisparos(){
+     protected void Aumentardisparos(){
     cantDisparos++;
     }
     protected Boolean disparar()
@@ -67,12 +69,12 @@ public class Tanque extends Unidad {
 		return true;
 	}
 	
-	protected void EliminarDisparo(Disparo d)
+	public void EliminarDisparo(Disparo d)
 	{//estoy se eje
 			disparos.remove(d);
+			
 					
 	}
-		*/
 	
 
 	public boolean disminuirVida()
@@ -80,8 +82,6 @@ public class Tanque extends Unidad {
 		resistencia--;
 		return (resistencia==0);
 	}
-	public boolean Colision(Tanque t){
-		return false;
-	}
+
 	
 }
