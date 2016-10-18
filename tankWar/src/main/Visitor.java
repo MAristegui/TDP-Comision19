@@ -1,0 +1,15 @@
+package main;
+import unidades.*;
+import obstaculos.*;
+public abstract  class Visitor {
+   protected gameObject objeto;
+   
+   public abstract boolean VisitRock(Rock r);
+   public abstract boolean VisitWater(Water w);
+   public abstract boolean visitPared(Pared p);
+   public abstract boolean visitGrass(Grass g);
+   public abstract boolean visitPlayer(Jugador j);
+   public abstract boolean visitBridge(Bridge b);
+   public abstract boolean visitDisparo(Disparo d);
+   
+}
