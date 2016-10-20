@@ -7,6 +7,7 @@ import obstaculos.Pared;
 import obstaculos.Rock;
 import obstaculos.Water;
 import main.Visitor;
+import PowerUp.*;
 public class VisitorEnemigo extends Visitor{
 	public VisitorEnemigo(gameObject o){
     	objeto=o;
@@ -35,5 +36,12 @@ public class VisitorEnemigo extends Visitor{
    }
    public boolean visitEnemigo(Enemigo e){
 	   return false;
+   }
+   public boolean visitPowerUp(PowerUp pw)
+   {
+	   return true;
+   }
+   public boolean visitDisparoEnemigo(DisparoEnemigo d){
+	   return true;
    }
 }

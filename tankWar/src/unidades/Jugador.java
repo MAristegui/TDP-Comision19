@@ -38,5 +38,7 @@ public class Jugador extends Unidad{
      public int getVidas(){
     	 return vidas;
      }
-   
+     public void AumentarDisparos()
+     {
+     }
 }

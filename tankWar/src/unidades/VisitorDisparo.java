@@ -7,6 +7,7 @@ import obstaculos.Pared;
 import obstaculos.Rock;
 import obstaculos.Water;
 import main.Visitor;
+import PowerUp.*;
 public class VisitorDisparo extends Visitor {
 	  public VisitorDisparo(gameObject o){
 	    	objeto=o;
@@ -14,7 +15,7 @@ public class VisitorDisparo extends Visitor {
 	    
 	   public  boolean VisitRock(Rock r){
 		objeto.destruir();
-		r.restarResistencia();
+		r.destruir();
 		return false;
 	   }
 	   public  boolean VisitWater(Water w){
@@ -41,6 +42,15 @@ public class VisitorDisparo extends Visitor {
 	   public boolean visitEnemigo(Enemigo e){
 		   e.restarResistencia();
 		   objeto.destruir();
+		   return false;
+	   }
+	   public boolean visitPowerUp(PowerUp pw)
+	   {
+		   return true;
+	   }
+	   public boolean visitDisparoEnemigo(DisparoEnemigo d){
+		   objeto.destruir();
+		   d.destruir();
 		   return false;
 	   }
 }

@@ -6,6 +6,7 @@ import obstaculos.Pared;
 import obstaculos.Rock;
 import obstaculos.Water;
 import main.gameObject;
+import PowerUp.*;
 public class VisitorJugador extends Visitor{
 	
 	    public VisitorJugador(gameObject o){
@@ -34,6 +35,17 @@ public class VisitorJugador extends Visitor{
 		   return true;
 	   }
 	   public boolean visitEnemigo(Enemigo e){
+		   return false;
+	   }
+	   public boolean visitPowerUp(PowerUp pw)
+	   {
+		   pw.AplicarPowerUP((Jugador)objeto);
+		   return true;
+	   }
+	   public boolean visitDisparoEnemigo(DisparoEnemigo d){
+		   d.destruir();
+		   objeto.destruir();
+		   System.out.println("El enemigo ha matado al jugador!");
 		   return false;
 	   }
 }

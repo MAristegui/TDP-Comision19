@@ -14,7 +14,7 @@ public abstract class PowerUp extends gameObject {
 		profundidad=prof;
 	}
 	public boolean Aceptar(Visitor V) {
-		V.VisitPowerUp(this);
+		V.visitPowerUp(this);
 		return true;
 	}
 	public abstract void AplicarPowerUP(Jugador J);

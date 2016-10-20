@@ -20,7 +20,11 @@ public class EnemigoRun implements Runnable{
              if(isRunnable){
           	     		int r=rnd.nextInt(4);  
     		            e.mover(r);
-    		          //  e.mover(4);
+    		            try{
+        		        	Thread.sleep(1000);  
+        		          }
+        		          catch (Exception e){;}
+    		            e.mover(5);
     		          try{
     		        	Thread.sleep(500);  
     		          }

@@ -1,6 +1,7 @@
 package main;
 import unidades.*;
 import obstaculos.*;
+import PowerUp.*;
 public abstract  class Visitor {
    protected gameObject objeto;
    
@@ -12,5 +13,6 @@ public abstract  class Visitor {
    public abstract boolean visitBridge(Bridge b);
    public abstract boolean visitDisparo(Disparo d);
    public abstract boolean visitEnemigo(Enemigo e);
-   
+   public abstract boolean visitPowerUp(PowerUp pw);
+   public abstract boolean visitDisparoEnemigo(DisparoEnemigo d);
 }

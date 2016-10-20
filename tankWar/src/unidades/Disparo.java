@@ -6,11 +6,11 @@ import javax.swing.JLabel;
 import main.Visitor;
 import mapa.celda;
 public class Disparo extends Unidad  {
-	private Unidad j;
+	protected Unidad j;
 	
        public Disparo(celda C, Unidad j, int prof){
     	   profundidad=prof;
-    	   isRunnable=true;
+    	   isRunning=true;
     	   this.j=j;
     	   dirActual=j.getDireccion();
     	   V=new VisitorDisparo(this);
@@ -33,8 +33,8 @@ public class Disparo extends Unidad  {
        public boolean Accept(Visitor Vis){
     	   return Vis.visitDisparo(this);
        }
-       public boolean getIsRunnable(){
+       public boolean getIsRunning(){
     	   
-    	   return isRunnable;
+    	   return isRunning ;
        }
 }

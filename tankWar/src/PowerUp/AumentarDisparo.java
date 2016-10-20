@@ -11,7 +11,7 @@ public class AumentarDisparo extends PowerUp {
 	public AumentarDisparo(celda c,int prof) {
 		super(c,prof);
 		grafico=new JLabel();
-		grafico.setIcon(new ImageIcon(this.getClass().getResource("C:/Users/mudo/Downloads/TDP-Comision19-master (1)/TDP-Comision19-master/tankWar/src/resourcesAumentarDisparo.png")));
+		grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/AumentarDisparo.png")));
 	}
 
 	
@@ -23,9 +23,9 @@ public class AumentarDisparo extends PowerUp {
 
 
 
-	@Override
+	
 	public boolean Accept(Visitor V) {
-		return V.VisitPowerUp(this);
+		return V.visitPowerUp(this);
 	}
 
 

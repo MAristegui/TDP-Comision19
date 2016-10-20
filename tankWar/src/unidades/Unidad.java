@@ -109,6 +109,9 @@ public void mover(int dir){
 				
 				Disparo d=new Disparo(cell,this,3);
 				break;
+			case 5:
+				DisparoEnemigo d1=new DisparoEnemigo(cell,this,3);
+				break;
 				
 		}
 

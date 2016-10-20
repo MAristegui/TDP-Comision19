@@ -14,10 +14,10 @@ public class DisparoRun implements Runnable{
      
      public void run(){
     	 
-    	 boolean isRunnable=d.getIsRunnable();
+    	 boolean isRunnable=d.getIsRunning();
     	 while(isRunnable){
     		 
-          isRunnable=d.getIsRunnable();
+          isRunnable=d.getIsRunning();
           
            if(isRunnable)
         	   if (!moviendo){

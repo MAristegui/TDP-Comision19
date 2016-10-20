@@ -1,5 +1,6 @@
 package mapa;
 import gui.GUI;
+import PowerUp.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -71,6 +72,13 @@ public class map implements Runnable{
   	   JLabel graf=player.getGrafico();
   	   graf.setBounds(32+16*20, 128+16*25, 16, 16);
   	   gui.add(graf,new Integer(2));
+  	   /*PRUEBApowerUP*/
+  	   gameObject[] objetos2=celdas[20][20].getObjects();
+  	   objetos2[1]=new AumentarDisparo(celdas[20][20],1);
+  	   AumentarDisparo powerUp=(AumentarDisparo)objetos2[1];
+  	   JLabel graf2=powerUp.getGrafico();
+  	   graf2.setBounds(32+16*20, 128+16*20, 16, 16);
+  	   gui.add(graf2,new Integer(2));
      }
      public Jugador getJugador(){
     	 return player;
@@ -85,6 +93,7 @@ public class map implements Runnable{
     	 JLabel graf=objetos[1].getGrafico();
     	   graf.setBounds(32+16*8, 128+16*4, 16, 16);
     	   gui.add(graf,new Integer(2));
+    	  
     	
      }
 }

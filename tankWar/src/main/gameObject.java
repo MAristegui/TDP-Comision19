@@ -6,7 +6,7 @@ public abstract class gameObject {
      protected JLabel grafico;
      protected celda cell;
      protected int profundidad;
-     protected volatile boolean isRunnable;
+     protected volatile boolean isRunning;
      
      public JLabel getGrafico(){
     	 return grafico;
@@ -15,7 +15,7 @@ public abstract class gameObject {
     	 grafico=graf;
      }
      public void destruir(){
-    	 this.isRunnable=false;
+    	 this.isRunning=false;
     	 cell.getObjects()[getProfundidad()].getGrafico().setIcon(null);
     	 cell.getObjects()[getProfundidad()]=null;
     	// cell=null;

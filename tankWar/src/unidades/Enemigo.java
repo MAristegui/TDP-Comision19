@@ -11,7 +11,7 @@ public class Enemigo extends Unidad{
 	    	resistencia=4;
 	    	speed=30;
 	    	cell=c;
-	    	isRunnable=true;
+	    	isRunning=true;
 	    	this.profundidad=profundidad;
 	    	V=new VisitorEnemigo(this);
 	    	graficos=new Icon[4];
@@ -39,6 +39,6 @@ public class Enemigo extends Unidad{
 		resistencia--;
 	}
 	public boolean getIsRunnable(){
-		return isRunnable;
+		return isRunning;
 	}
 }
