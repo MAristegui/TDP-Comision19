@@ -11,5 +11,6 @@ public abstract  class Visitor {
    public abstract boolean visitPlayer(Jugador j);
    public abstract boolean visitBridge(Bridge b);
    public abstract boolean visitDisparo(Disparo d);
+   public abstract boolean visitEnemigo(Enemigo e);
    
 }

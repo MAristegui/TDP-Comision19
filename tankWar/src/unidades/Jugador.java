@@ -13,7 +13,7 @@ public class Jugador extends Unidad{
     	 V=new VisitorJugador(this);
     	 cell=c;
     	 vidas=3;
-    	 speed=1;
+    	 speed=15;
     	 puntaje=0;
     	 graficos=new Icon[4];
     	 graficos[0]=new ImageIcon(this.getClass().getResource("/resources/down.png"));

@@ -6,9 +6,9 @@ import javax.swing.JLabel;
 import main.Visitor;
 import mapa.celda;
 public class Disparo extends Unidad  {
-	private Jugador j;
+	private Unidad j;
 	
-       public Disparo(celda C, Jugador j, int prof){
+       public Disparo(celda C, Unidad j, int prof){
     	   profundidad=prof;
     	   isRunnable=true;
     	   this.j=j;
@@ -16,7 +16,7 @@ public class Disparo extends Unidad  {
     	   V=new VisitorDisparo(this);
     	   cell=C;
     	   cell.getObjects()[3]=this;
-    	   speed=2;
+    	   speed=5;
     	   grafico=new JLabel();
       	   grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/disparo.png")));
       	   grafico.setBounds(32+16*cell.getPosX(), 128+16*cell.getPosY(), 16, 16);

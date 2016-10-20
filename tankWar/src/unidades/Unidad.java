@@ -81,7 +81,6 @@ public void mover(int dir){
 					cell.getObjects()[profundidad]=null;
 					cell=C;
 					moverGrafico();
-					System.out.println("Me movi logicamente");
 				}
 				}
 				break;
@@ -108,7 +107,7 @@ public void mover(int dir){
 				break;
 			case 4:
 				
-				Disparo d=new Disparo(cell,(Jugador)this,3);
+				Disparo d=new Disparo(cell,this,3);
 				break;
 				
 		}
@@ -121,31 +120,29 @@ public int  getVelocidad(){
 }
   public void run(){
 	  moviendo=true;
-	  int velocidad=getVelocidad();
-	  for(int i=0;i<16/velocidad;i++){
+	  for(int i=0;i<16;i++){
 		  switch(dirActual){
 		  case 0:
-			  grafico.setBounds(grafico.getX(), grafico.getY()+velocidad, 16, 16);
+			  grafico.setBounds(grafico.getX(), grafico.getY()+1, 16, 16);
 			  break;
 		  case 1:
-			  grafico.setBounds(grafico.getX()-velocidad, grafico.getY(), 16, 16);
+			  grafico.setBounds(grafico.getX()-1, grafico.getY(), 16, 16);
 			  break;
 		  case 2:
-			  grafico.setBounds(grafico.getX(), grafico.getY()-velocidad, 16, 16);
+			  grafico.setBounds(grafico.getX(), grafico.getY()-1, 16, 16);
 			  break;
 		  case 3:
-			  grafico.setBounds(grafico.getX()+velocidad, grafico.getY(), 16, 16);
+			  grafico.setBounds(grafico.getX()+1, grafico.getY(), 16, 16);
 			  break;
 		  }
 		  
 		  try{
-			  Thread.sleep(10);
+			  Thread.sleep(speed);
 		  }catch(InterruptedException e){
 			  
 		  }
 		  
 	  }
-      System.out.println("Me movi graficamente");
 	  moviendo=false;
   }
   

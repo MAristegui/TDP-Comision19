@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import javax.swing.*;
 import main.gameObject;
 import unidades.*;
-public class map {
+public class map implements Runnable{
     private GUI gui;
     private celda[][] celdas;
     private Jugador player;
@@ -18,6 +18,8 @@ public class map {
     	 try{
     	 inicializarCeldas();
     	 añadirJugador();
+    	 Thread t=new Thread(this);
+    	 t.start();
     	 }catch(FileNotFoundException e){
     		 System.out.println("ERROR, ARCHIVO DE MAPA NO ENCONTRADO.");
     	 }
@@ -64,8 +66,8 @@ public class map {
      }
      public void añadirJugador(){
        gameObject[] objetos=celdas[20][25].getObjects();
-  	   objetos[0]=new Jugador(celdas[20][25],0);
-  	   player=(Jugador)objetos[0];
+  	   objetos[1]=new Jugador(celdas[20][25],1);
+  	   player=(Jugador)objetos[1];
   	   JLabel graf=player.getGrafico();
   	   graf.setBounds(32+16*20, 128+16*25, 16, 16);
   	   gui.add(graf,new Integer(2));
@@ -75,5 +77,14 @@ public class map {
      }
      public GUI getGui(){
     	 return gui;
+     }
+     public void run(){
+
+    	 gameObject[] objetos=celdas[8][4].getObjects();
+    	 objetos[1]=new Enemigo(celdas[8][4],1);
+    	 JLabel graf=objetos[1].getGrafico();
+    	   graf.setBounds(32+16*8, 128+16*4, 16, 16);
+    	   gui.add(graf,new Integer(2));
+    	
      }
 }

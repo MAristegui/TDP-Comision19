@@ -38,4 +38,10 @@ public class VisitorDisparo extends Visitor {
 		   d.destruir();
 		   return true;
 	   }
+	   public boolean visitEnemigo(Enemigo e){
+		   e.restarResistencia();
+		   objeto.destruir();
+		   return false;
+	   }
 }
+

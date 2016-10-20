@@ -33,4 +33,7 @@ public class VisitorJugador extends Visitor{
 	   public boolean visitDisparo(Disparo d){
 		   return true;
 	   }
+	   public boolean visitEnemigo(Enemigo e){
+		   return false;
+	   }
 }
