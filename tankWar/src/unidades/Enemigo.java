@@ -15,10 +15,10 @@ public class Enemigo extends Unidad{
 	    	this.profundidad=profundidad;
 	    	V=new VisitorEnemigo(this);
 	    	graficos=new Icon[4];
-	    	 graficos[0]=new ImageIcon(this.getClass().getResource("/resources/down.png"));
-	    	 graficos[1]=new ImageIcon(this.getClass().getResource("/resources/up.png"));
-	    	 graficos[2]=new ImageIcon(this.getClass().getResource("/resources/right.png"));
-	    	 graficos[3]=new ImageIcon(this.getClass().getResource("/resources/left.png"));
+	    	 graficos[0]=new ImageIcon(this.getClass().getResource("/resources/Enemydown.png"));
+	    	 graficos[1]=new ImageIcon(this.getClass().getResource("/resources/Enemyup.png"));
+	    	 graficos[2]=new ImageIcon(this.getClass().getResource("/resources/Enemyright.png"));
+	    	 graficos[3]=new ImageIcon(this.getClass().getResource("/resources/Enemyleft.png"));
 	    	 grafico=new JLabel();
 	    	 grafico.setIcon(graficos[1]);
 	    	

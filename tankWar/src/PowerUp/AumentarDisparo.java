@@ -11,7 +11,7 @@ public class AumentarDisparo extends PowerUp {
 	public AumentarDisparo(celda c,int prof) {
 		super(c,prof);
 		grafico=new JLabel();
-		grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/AumentarDisparo.png")));
+		grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/PowerUp_AD.gif")));
 	}
 
 	

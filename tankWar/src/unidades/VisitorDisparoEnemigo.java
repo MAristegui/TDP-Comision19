@@ -16,7 +16,7 @@ public class VisitorDisparoEnemigo extends Visitor {
 	    
 	   public  boolean VisitRock(Rock r){
 		objeto.destruir();
-		r.destruir();
+		r.restarResistencia();
 		return false;
 	   }
 	   public  boolean VisitWater(Water w){
