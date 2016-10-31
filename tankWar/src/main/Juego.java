@@ -1,12 +1,16 @@
 package main;
 import gui.GUI;
-import unidades.Jugador;
+import jugador.Jugador;
+
 import java.awt.event.KeyEvent;
+
 import mapa.map;
 public class Juego {
+	private map m;
 	private Jugador jugador;
    public Juego(GUI gui){
 	   map mapa=new map(gui);
+	   
 	  jugador=mapa.getJugador();
 	  
    }
@@ -31,4 +35,12 @@ public class Juego {
 		}
 		jugador.mover(direccion);
    }
+public boolean Victory() {
+	
+	return m.Victory();
+}
+public boolean Finish() {
+
+	return m.finish();
+}
 }

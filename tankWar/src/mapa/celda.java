@@ -1,4 +1,5 @@
 package mapa;
+import enemigo.Enemigo;
 import main.gameObject;
 import gui.GUI;
 import obstaculos.*;
@@ -11,13 +12,13 @@ public class celda {
 	   this.posX=posX;
 	   this.posY=posY;
 	   Map=Mapa;
-  	   listaObjetosLogicos=new gameObject[4];
+  	   listaObjetosLogicos=new gameObject[5];
     		switch(tipo){
 	    		case  'a' : 
-	    			listaObjetosLogicos[1]=null;
+	    			listaObjetosLogicos[0]=null;
 	    			break;
 	    		case 'b':
-	    			listaObjetosLogicos[1]=new Rock(this,1);
+	    			listaObjetosLogicos[0]=new Rock(this,0);
 	    			
 	    			break;
 	    		case 'c':
@@ -33,12 +34,12 @@ public class celda {
 	    		case 'm':
 	    		case 'n':
 	    		case 'o':
-	    			listaObjetosLogicos[1]=new Water(this,tipo,1);
+	    			listaObjetosLogicos[0]=new Water(this,tipo,0);
 	    			break;
 	    		case 'p':
 	    		case 'q':
 	    		case 'r':
-	    			listaObjetosLogicos[1]=new Bridge(this,tipo,1);
+	    			listaObjetosLogicos[0]=new Bridge(this,tipo,0);
 	    			break;
 	    		case 's':
 	    		case 't':
@@ -53,11 +54,13 @@ public class celda {
 	    		case '3':
 	    		case '4':
 	    		case '5':
-	    			listaObjetosLogicos[1]=new Grass(this,tipo,1);
+	    			listaObjetosLogicos[2]=new Grass(this,tipo,2);
 	    			break;
 	    		case '6':
-	    			listaObjetosLogicos[1]=new Pared(this);
-	    		
+	    			listaObjetosLogicos[0]=new Pared(this);
+	    		break;
+	    		case '7':
+	    			listaObjetosLogicos[0]=new Acero(this,0);
 	    			
 	    			
    }
@@ -78,4 +81,18 @@ public class celda {
    public GUI getGui(){
 	   return Map.getGui();
    }
+   public void gameOver(){
+	   Map.gameOver();
+   }
+   public void detenerTiempo(){
+	   Map.detenerTiempo();
+   }
+   public void eliminarEnemigos(){
+	   Map.eliminarEnemigos();
+   }
+public void destruir(Enemigo enemigo) {
+	Map.destruir(enemigo);
+	
+}
+
 }
