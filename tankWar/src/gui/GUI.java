@@ -16,13 +16,13 @@ import java.awt.event.*;
 
 
 public class GUI extends JFrame implements Runnable{
-	private static final long serialVersionUID = 1L;
 
 	private JLayeredPane contentPane;
 	private Juego j;
 	private Thread t;
 	private GUI frame;
-
+	private boolean ganar;
+	private boolean perder;
 
 	/**
 	 * Launch the application.
@@ -65,10 +65,9 @@ public class GUI extends JFrame implements Runnable{
 		fondo.setBounds(0, 0, 592, 592);
 		contentPane.add(fondo,new Integer(0));
 		
-		
-		Thread t=new Thread(this);
+		ganar=false;
+		perder=false;
 		j = new Juego(this);
-		t.start();
 		
 		addKeyListener(new KeyAdapter() {
 			
@@ -88,24 +87,32 @@ public class GUI extends JFrame implements Runnable{
 	public void cerrar(){
 		System.exit(1);
 	}
+	public void act(){
+		Thread t=new Thread(this);
+		t.start();
+	}
+	public void Victory(){
+		ganar=true;
+	}
+	public void Finish(){
+		perder=true;
+	}
 	/**
 	 * Metodo que corrobora si el jugador gano o perdio el juego.
 	 */
 	public void run() {
 		while (true){
-			if(j.Victory()){
-				System.out.println("ACA GABY MANDA ALGUNA MIERDA DE GUI PARA DETECTAR QUE GANASTE ORTIBA AMIGO DE algun gil JAJAJA");
-				cerrar();
-				break;
-			}
-				
 			
-			if (j.Finish()){
-				System.out.println("ACA GABY MANDA ALGUNA MIERDA DE GUI PARA DETECTAR QUE PERDISTE JAJAJA");
-				cerrar();
-				break;
-			}
-		
+		if(ganar){
+			System.out.println("max carreado");
+			cerrar();
+		}
+		if(perder){
+			System.out.println("VAMOS GABY DALEEEEEEEEEEEEEE");
+			cerrar();
+			
+		}
+			
 			try {
 				t.sleep(1500);
 			} catch (InterruptedException e) {

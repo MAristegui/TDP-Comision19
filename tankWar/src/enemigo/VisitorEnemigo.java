@@ -1,17 +1,11 @@
 package enemigo;
-import obstaculos.Acero;
-import obstaculos.Aguila;
+
 import main.gameObject;
-import obstaculos.Bridge;
-import obstaculos.Grass;
-import obstaculos.Pared;
-import obstaculos.Rock;
-import obstaculos.Water;
+import obstaculos.*;
+import main.*;
 import powerUp.*;
-import disparo.Disparo;
-import disparo.DisparoEnemigo;
 import jugador.Jugador;
-import main.Visitor;
+import disparo.*;
 public class VisitorEnemigo extends Visitor{
 	public VisitorEnemigo(gameObject o){
     	objeto=o;
@@ -36,8 +30,15 @@ public class VisitorEnemigo extends Visitor{
    public  boolean visitBridge(Bridge b){
 	   return true;
    }
-   public boolean visitDisparo(Disparo d){
-	   return true;
+   public boolean visitDisparo(DisparoPlayer d){
+	   if(d!=null)
+	   d.destruir();
+	   
+	   if(objeto!=null){
+	   Enemigo e=(Enemigo) objeto;
+	   e.restarResistencia();
+	   }
+	   return false;
    }
    public boolean visitEnemigo(Enemigo e){
 	   return false;
@@ -49,10 +50,13 @@ public class VisitorEnemigo extends Visitor{
    public boolean visitDisparoEnemigo(DisparoEnemigo d){
 	   return true;
    }
-   public boolean visitAcero(Acero a){
-	   return false;
+
+   public boolean visitAcero(Acero acero) {
+	return false;
    }
-   public boolean visitAguila(Aguila a){
-	   return false;
-   }
+
+@Override
+public boolean visitAguila(Aguila aguila) {
+	return false;
+}
 }

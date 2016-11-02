@@ -35,12 +35,14 @@ public class map implements Runnable{
     private Jugador player;
     private JLabel puntaje;
     private JLabel vidas;
+    private JLabel Restantes;
     //private boolean gameOver=false;
     private EnemyFactory factory;
     private Collection<Enemigo> EnemigosActuales;
     protected Collection<celda> mejorables;
     private int Enemigos;
 	private boolean perdiste;
+	private int obtenido;
 	private boolean Ganaste;
 	private int matados;
 	private int score;
@@ -64,8 +66,14 @@ public class map implements Runnable{
     	 vidas.setForeground(Color.lightGray);
     	 vidas.setBounds(517,235,100,32);
     	 Enemigos=16;
+    	 Restantes=new JLabel("16");
+    	 Restantes.setFont(new Font("Serif", Font.PLAIN, 20));
+    	 Restantes.setForeground(Color.lightGray);
+    	 Restantes.setBounds(517,350,100,32);
+    	 gui.add(Restantes,new Integer(2));
     	 perdiste=false;
     	 Ganaste=false;
+    	 obtenido=0;
     	 matados=0;
     	 gui.add(vidas,new Integer(2));
     	 mejorables=new LinkedList<celda>();
@@ -91,6 +99,11 @@ public class map implements Runnable{
     	 
      }
      public void cambiarPuntaje(int score){
+    	 puntaje.setText(score+"");
+     }
+     public void addPwup(){
+    	 score=score+500;
+    	 obtenido=obtenido+500;
     	 puntaje.setText(score+"");
      }
      public void cambiarVidas(int life){
@@ -150,33 +163,8 @@ public class map implements Runnable{
   	   JLabel graf=player.getGrafico();
   	   graf.setBounds(25+16*20, 114+16*25, 30, 30);
   	   gui.add(graf,new Integer(2));
-  	   /*PRUEBApowerUP*/
-  	   gameObject[] objetos2=celdas[20][23].getObjects();
-  	   objetos2[0]=new Estrella(celdas[20][23],0);
-  	   Estrella powerUp=(Estrella)objetos2[0];
-  	   JLabel graf2=powerUp.getGrafico();
-  	   graf2.setBounds(32+16*20, 128+16*23, 16, 16);
-  	   gui.add(graf2,new Integer(2));
-  	   
-  	   objetos2=celdas[20][21].getObjects();
-	   objetos2[0]=new Estrella(celdas[20][21],0);
-	   powerUp=(Estrella)objetos2[0];
-	   graf2=powerUp.getGrafico();
-	   graf2.setBounds(32+16*20, 128+16*21, 16, 16);
-	   gui.add(graf2,new Integer(2));
-	   
-	   objetos2=celdas[20][19].getObjects();
-	   objetos2[0]=new Estrella(celdas[20][19],0);
-	   powerUp=(Estrella)objetos2[0];
-	   graf2=powerUp.getGrafico();
-	   graf2.setBounds(32+16*20, 128+16*19, 16, 16);
-	   gui.add(graf2,new Integer(2));
-	   
-  	  gameObject[] objetos3=celdas[20][16].getObjects();
- 	   objetos3[0]=new EliminarEnemigos(celdas[20][16],0);
- 	   JLabel graf3=objetos3[0].getGrafico();
- 	   graf3.setBounds(32+16*20, 128+16*16, 16, 16);
- 	   gui.add(graf3,new Integer(2));
+ 	   
+ 	   
      }
      public Jugador getJugador(){
     	 return player;
@@ -192,7 +180,11 @@ public class map implements Runnable{
       		 int Actuales=EnemigosActuales.size();
       		 System.out.println(Actuales);
       		 try {
-      			 if (Actuales<4)
+      			 if(obtenido>=2000){
+      				 player.setVidas(player.getVidas()+1);
+      				 obtenido=0;
+      			 	}
+      			 if (Actuales<4 && Enemigos>0)
       				 agregarEnemigo();
       			if (matados==4){
       				addPowerUP();
@@ -262,9 +254,6 @@ public class map implements Runnable{
     		 }
     	 }
      
-     private void agregarPowerUp(){
-    	 System.out.println("salva!");
-     }
      public void detenerTiempo(){
     	 for(Enemigo e:EnemigosActuales){
     		 e.detener(5000);
@@ -276,7 +265,8 @@ public class map implements Runnable{
  		//Cambia las paredes por acero nuevas.
  		for(celda c:mejorables){
  			if(c.getObjects()[1]==null){
- 			c.getObjects()[0].destruir();
+ 				if(c.getObjects()[0]!=null)
+ 					c.getObjects()[0].destruir();
  			c.getObjects()[0]=new Acero(c,0);
  			JLabel graf=c.getObjects()[0].getGrafico();
  			graf.setBounds(32+16*c.getPosX(),128+16*c.getPosY(),16,16);
@@ -340,18 +330,17 @@ public class map implements Runnable{
      public void destruir(Enemigo e){
     	 matados++;
     	 score=score+e.getPuntaje();
+    	 obtenido=obtenido+e.getPuntaje();
     	 EnemigosActuales.remove(e);
+    	 Restantes.setText((Enemigos+EnemigosActuales.size())+"");
     	 gui.repaint();
-    	 if(EnemigosActuales.size()==0&&Enemigos==0)
+    	 if(EnemigosActuales.size()==0 && Enemigos==0)
     		 {Ganaste=true;
-    		 System.out.println("ROBERTO A GANADO");
+    		 gui.Victory();
     		 }
     		 
      }
-     public boolean finish() {
 
- 		return perdiste;
- 	}
  	public void gameOver() {
 		System.out.println("ROBERTO PERDIO JAJAJA ");
 		if(player!=null)
@@ -359,10 +348,9 @@ public class map implements Runnable{
 				player=null;
 			}
 		perdiste=true;
+		gui.Finish();
 	}
- 	public boolean Victory(){
-   	 return Ganaste;
-    }
+ 	
 	 
  	public void eliminarEnemigos(){
         LinkedList<Enemigo> eliminar= new LinkedList<Enemigo>();

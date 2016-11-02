@@ -12,7 +12,7 @@ public class Juego {
 	   map mapa=new map(gui);
 	   
 	  jugador=mapa.getJugador();
-	  
+	  gui.act();
    }
    public void mover(int dir){
 	   int direccion = 0;
@@ -35,12 +35,5 @@ public class Juego {
 		}
 		jugador.mover(direccion);
    }
-public boolean Victory() {
-	
-	return m.Victory();
-}
-public boolean Finish() {
 
-	return m.finish();
-}
 }

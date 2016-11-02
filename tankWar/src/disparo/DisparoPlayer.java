@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 
 import jugador.Jugador;
 import main.Unidad;
+import main.Visitor;
 import mapa.celda;
 
 public class DisparoPlayer extends Disparo{
@@ -23,10 +24,7 @@ public class DisparoPlayer extends Disparo{
 	   graficos[3]=new ImageIcon(this.getClass().getResource("/resources/disparo.png"));
   	   DisparoRun d=new DisparoRun(this,dirActual);
     }
-    public void sumarPuntaje(int i){
-    	Jugador jug=(Jugador)j;
-    	jug.AumentarPuntaje(i);
-    }
+
 
     	 public void destruir(){
       	   super.destruir();
@@ -34,5 +32,12 @@ public class DisparoPlayer extends Disparo{
       	   jug.restarDisparosEnEjecucion();
       	   
          }
+
+
+		@Override
+		public boolean Accept(Visitor V) {
+			// TODO Auto-generated method stub
+			return V.visitDisparo(this);
+		}
     
 }

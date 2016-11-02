@@ -2,51 +2,60 @@
 package disparo;
 
 import main.gameObject;
-import obstaculos.Bridge;
-import obstaculos.Grass;
-import obstaculos.Pared;
-import obstaculos.Rock;
-import obstaculos.Water;
+import obstaculos.*;
+import main.*;
 import powerUp.*;
-import obstaculos.Acero;
-import obstaculos.Aguila;
 import enemigo.Enemigo;
 import jugador.Jugador;
-import main.Visitor;
 public class VisitorDisparoEnemigo extends Visitor {
 	  public VisitorDisparoEnemigo(gameObject o){
 	    	objeto=o;
 	    }
 	    
 	   public  boolean VisitRock(Rock r){
-		objeto.destruir();
-		r.restarResistencia();
+		   if(objeto!=null){
+		   objeto.destruir();
+		   }
+		   if(r!=null)
+		   r.restarResistencia();
+		   
 		return false;
 	   }
 	   public  boolean VisitWater(Water w){
 		   return true;
 	   }
 	   public  boolean visitPared(Pared p){
+		   if(objeto!=null){
 		   objeto.destruir();
 		   p.ColisionDisparo();
+			}
+		   
 		   return false;
 	   }
 	   public  boolean visitGrass(Grass g){
-		   //g.Colision();
+		   g.Colision();
 		   return true;
 	   }
 	   public  boolean visitPlayer(Jugador j){
-		   objeto.destruir(); 
-		   j.impact();
+		   if(objeto!=null)
+		  	 objeto.destruir();
+		  if(j!=null)
+		   	j.impact();
+		   	
 		   return false;
+		   
 	   }
 	   public  boolean visitBridge(Bridge b){
 		   return true;
 	   }
-	   public boolean visitDisparo(Disparo d){
+	   public boolean visitDisparo(DisparoPlayer d){
+		   if(objeto!=null)
 		   objeto.destruir();
+		   
+		  if( d!=null)
 		   d.destruir();
-		   return true;
+		   
+		   return false;
 	   }
 	   public boolean visitEnemigo(Enemigo e){
 		   return true;
@@ -56,21 +65,24 @@ public class VisitorDisparoEnemigo extends Visitor {
 		   return true;
 	   }
 	   public boolean visitDisparoEnemigo(DisparoEnemigo d){
-		  objeto.destruir();
-		  d.destruir();
-		  return false;
+		  return true;
 	   }
-	   public boolean visitAcero(Acero a){
-		   objeto.destruir();
-		   DisparoEnemigo d=(DisparoEnemigo)objeto;
-		   d.dañarAcero(a);
-		   return false;
-	   }
-	   public boolean visitAguila(Aguila a){
 
-		   objeto.destruir();
-		   return false;
-	   }
+	public boolean visitAcero(Acero acero) {
+		if(objeto!=null){
+			objeto.destruir();
+			}
+		return false;
+	}
+
+	@Override
+	public boolean visitAguila(Aguila aguila) {
+		if(objeto!=null){
+		objeto.destruir();
+		aguila.finish();
+		}
+		return false;
+	}
 }
 
 

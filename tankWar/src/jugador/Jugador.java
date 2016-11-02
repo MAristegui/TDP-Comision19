@@ -13,7 +13,6 @@ import main.Unidad;
 import main.Visitor;
 public class Jugador extends Unidad{
      protected int vidas;
-     protected int puntaje;
      private map Mapa;
      private State nivel;
      private int alto;
@@ -26,7 +25,6 @@ public class Jugador extends Unidad{
     	 V=new VisitorJugador(this);
     	 cell=c;
     	 vidas=3;
-    	 puntaje=0;
     	 nivel=new Nivel1(this);
     	 graficos=new Icon[4];
     	 grafico=new JLabel();
@@ -36,22 +34,14 @@ public class Jugador extends Unidad{
      public boolean Accept(Visitor V){
     	 return V.visitPlayer(this);
      }
-     public int getPuntaje(){
-    	 return puntaje;
+     public void addPowerUp(){
+    	 Mapa.addPwup();
      }
      public int getAlto(){
     	 return alto;
      }
      public int getAncho(){
     	 return ancho;
-     }
-     public void AumentarPuntaje(int p){
-    	 puntaje+=p;
-    	 if(puntaje>2000){
-    		 vidas++;
-    		 Mapa.cambiarVidas(vidas);
-    	 }
-    	 Mapa.cambiarPuntaje(puntaje);
      }
      public void setVidas(int v){
     	 vidas=v;
@@ -115,8 +105,16 @@ public class Jugador extends Unidad{
     	 nivel.setGraficos(graficos,grafico);
      }
 	public void setInvulnerable() {
-		
-		
+		Phantom n=new Phantom(this);
+		n.act();
+	}
+	public void setI(){
+		System.out.println("SOS GAY ");
+		V=new VisitorInvulnerable(this);
+	}
+	public void setV(){
+		V=new VisitorJugador(this);
+		System.out.println("VOS TAMBIEN ROBERTO JAJAJA ");
 	}
 	public void mejorar() {
 		Mapa.mejorar();

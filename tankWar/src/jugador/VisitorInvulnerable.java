@@ -4,9 +4,9 @@ import obstaculos.*;
 import powerUp.*;
 import disparo.*;
 import enemigo.*;
-public class VisitorJugador extends Visitor{
+public class VisitorInvulnerable extends Visitor{
 	
-	    public VisitorJugador(gameObject o){
+	    public VisitorInvulnerable(gameObject o){
 	    	objeto=o;
 	    }
 	    
@@ -46,10 +46,6 @@ public class VisitorJugador extends Visitor{
 	   public boolean visitDisparoEnemigo(DisparoEnemigo d){
 		  if(d!=null){
 		  d.destruir();
-		  }
-		  if (objeto!=null){
-		   Jugador j=(Jugador) objeto;
-		   j.impact();
 		  }
 		   return false;
 	   }
