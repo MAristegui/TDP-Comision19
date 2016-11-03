@@ -18,7 +18,8 @@ public abstract class Unidad extends gameObject implements Runnable {
    
     
     public abstract void dañarAcero(Acero a);
-public void mover(int dir){
+public boolean mover(int dir){
+	        boolean pude=false;
 	        celda C;
 	    	switch (dir) {
 			case 0 : //Abajo
@@ -27,7 +28,7 @@ public void mover(int dir){
 				grafico.setIcon(graficos[0]);
 				C=cell.getCelda(cell.getPosX(), cell.getPosY()+1);
 				boolean acepto=true;
-				for(int i=0;i<5&&acepto&&isRunning;i++){
+				for(int i=0;i<5&&acepto&&getIsRunning();i++){
 					if(C.getObjects()[i]!=null){
 						if(!C.getObjects()[i].Accept(V)){
 							acepto=false;
@@ -35,6 +36,8 @@ public void mover(int dir){
 					}
 				}
 				if(acepto){
+					pude=true;
+					C=cell.getCelda(cell.getPosX(), cell.getPosY()+1);
 					intercambiar_celdas(C);
 				}
 				}
@@ -45,7 +48,7 @@ public void mover(int dir){
 				 grafico.setIcon(graficos[1]);
 				 C=cell.getCelda(cell.getPosX()-1, cell.getPosY());
 				 boolean acepto=true;
-					for(int i=0;i<5&&acepto&&isRunning;i++){
+					for(int i=0;i<5&&acepto&&getIsRunning();i++){
 						if(C.getObjects()[i]!=null){
 							if(!C.getObjects()[i].Accept(V)){
 								acepto=false;
@@ -53,6 +56,8 @@ public void mover(int dir){
 						}
 					}
 					if(acepto){
+						pude=true;
+						C=cell.getCelda(cell.getPosX()-1, cell.getPosY());
 						intercambiar_celdas(C);
 					}
 				}
@@ -64,7 +69,7 @@ public void mover(int dir){
 				
 				C=cell.getCelda(cell.getPosX(), cell.getPosY()-1);
 				boolean acepto=true;
-				for(int i=0;i<5&&acepto&&isRunning;i++){
+				for(int i=0;i<5&&acepto&&getIsRunning();i++){
 					if(C.getObjects()[i]!=null){
 						if(!C.getObjects()[i].Accept(V)){
 							acepto=false;
@@ -72,6 +77,8 @@ public void mover(int dir){
 					}
 				}
 				if(acepto){
+					pude=true;
+					C=cell.getCelda(cell.getPosX(), cell.getPosY()-1);
 					intercambiar_celdas(C);
 				}
 				}
@@ -90,6 +97,8 @@ public void mover(int dir){
 						}
 					}
 					if(acepto){
+						pude=true;
+						C=cell.getCelda(cell.getPosX()+1, cell.getPosY());
 						intercambiar_celdas(C);
 					}
 				}
@@ -102,11 +111,13 @@ public void mover(int dir){
 		}
 
 		
-	
+	return pude;
 }
 public void intercambiar_celdas(celda C){
 	moviendo=true;
-	
+    C.getObjects()[profundidad]=this;
+	cell.getObjects()[profundidad]=null;
+	cell=C;
 	moverGrafico();
 }
 public int  getVelocidad(){
@@ -117,39 +128,15 @@ public int  getVelocidad(){
 		  switch(dirActual){
 		  case 0:
 			  grafico.setBounds(grafico.getX(), grafico.getY()+1, getAncho(), getAlto());
-			  if(i==8){
-				    celda C=cell.getCelda(cell.getPosX(), cell.getPosY()+1);
-				    C.getObjects()[profundidad]=this;
-					cell.getObjects()[profundidad]=null;
-					cell=C;
-			  }
 			  break;
 		  case 1:
 			  grafico.setBounds(grafico.getX()-1, grafico.getY(), getAncho(), getAlto());
-			  if(i==8){
-				    celda C=cell.getCelda(cell.getPosX()-1, cell.getPosY());
-				    C.getObjects()[profundidad]=this;
-					cell.getObjects()[profundidad]=null;
-					cell=C;
-			  }
 			  break;
 		  case 2:
 			  grafico.setBounds(grafico.getX(), grafico.getY()-1, getAncho(), getAlto());
-			  if(i==8){
-				    celda C=cell.getCelda(cell.getPosX(), cell.getPosY()-1);
-				    C.getObjects()[profundidad]=this;
-					cell.getObjects()[profundidad]=null;
-					cell=C;
-			  }
 			  break;
 		  case 3:
 			  grafico.setBounds(grafico.getX()+1, grafico.getY(), getAncho(), getAlto());
-			  if(i==8){
-				    celda C=cell.getCelda(cell.getPosX()+1, cell.getPosY());
-				    C.getObjects()[profundidad]=this;
-					cell.getObjects()[profundidad]=null;
-					cell=C;
-			  }
 			  break;
 		  }
 		  
@@ -170,6 +157,9 @@ public int  getVelocidad(){
 	  
 	  
 	  
+  }
+  public void stopThread(){
+	  t1.interrupt();
   }
   public int getDireccion(){
 	  return dirActual;

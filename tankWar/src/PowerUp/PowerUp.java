@@ -1,7 +1,9 @@
 package powerUp;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import jugador.*;
+
+import disparo.*;
+import jugador.Jugador;
 import mapa.*;
 import main.*;
 
@@ -14,8 +16,7 @@ public abstract class PowerUp extends gameObject {
 		profundidad=prof;
 	}
 	public boolean Aceptar(Visitor V) {
-		V.visitPowerUp(this);
-		return true;
+		return V.visitPowerUp(this);
 	}
 	public abstract void AplicarPowerUP(Jugador J);
 

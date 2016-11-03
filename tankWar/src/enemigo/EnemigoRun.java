@@ -16,7 +16,7 @@ public class EnemigoRun implements Runnable{
        public void run(){
     	   try{
     	 Random rnd=new Random();
-    	   int cont=0;
+    	 int cont=0;
     	 boolean isRunnable=e.getIsRunning();
       	 while(isRunnable){
       		
@@ -25,14 +25,20 @@ public class EnemigoRun implements Runnable{
              if(isRunnable){
             	 if(!parar){
           	     		int r=rnd.nextInt(4);  
-    		            e.mover(r);
+    		            if(e.mover(r)){
+    		            	cont++;
+    		            	if(cont==e.getFrecuenciaDisparos()){
+    		            	e.disparar();
+    		            	cont=0;
+    		            	}
+    		            }
+    		            
     		            try{
         		        	Thread.sleep(100);  
         		          }
         		          catch (Exception e){;}
-    		            if(cont%20==0)
-    		            e.disparar();
-    		            cont++;
+
+    		        
             	 }else
             	 {
             		 Thread.sleep(5000);

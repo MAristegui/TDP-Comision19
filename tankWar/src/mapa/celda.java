@@ -1,6 +1,6 @@
 package mapa;
-import enemigo.Enemigo;
 import main.gameObject;
+import enemigo.Enemigo;
 import gui.GUI;
 import obstaculos.*;
 public class celda {
@@ -84,15 +84,19 @@ public class celda {
    public void gameOver(){
 	   Map.gameOver();
    }
+   public void destruirEnemigo(Enemigo e){
+	   Map.destruirEnemigo(e);
+   }
    public void detenerTiempo(){
 	   Map.detenerTiempo();
    }
    public void eliminarEnemigos(){
 	   Map.eliminarEnemigos();
    }
-public void destruir(Enemigo enemigo) {
-	Map.destruir(enemigo);
-	
-}
-
+   public void aumentarPuntaje(int i){
+	   Map.aumentarPuntaje(i);
+   }
+   public void mejorar(){
+	   Map.mejorar();
+   }
 }

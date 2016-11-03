@@ -43,4 +43,7 @@ public abstract class State {
     }
     public abstract void setGraficos(Icon[] graficos, JLabel grafico);
     public abstract void dañarAcero(Acero a);
+    public int getDisparosEnEjecucion(){
+    	return disparos_en_ejecucion;
+    }
 }

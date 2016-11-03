@@ -10,20 +10,18 @@ import main.Visitor;
 import mapa.celda;
 public abstract class Enemigo extends Unidad{
 	 protected int resistencia;
-	 private int disparos_en_ejecucion;
-	 private int disparos_simultaneos;
+	 protected int frecuencia_disparos;
 	 private int alto;
 	 private int ancho;
 	 protected EnemigoRun e;
 	    public Enemigo(celda c, int profundidad){
+	    	V=new VisitorEnemigo(this);
 	    	alto=26;
 	    	ancho=26;
-	    	disparos_en_ejecucion=0;
-	    	disparos_simultaneos=1;
 	    	cell=c;
 	    	isRunning=true;
 	    	this.profundidad=profundidad;
-	    	V=new VisitorEnemigo(this);
+	    	
 	    	
 	    		
 	    			
@@ -40,6 +38,9 @@ public abstract class Enemigo extends Unidad{
      public int getAncho(){
     	 return ancho;
      }
+     public int getFrecuenciaDisparos(){
+    	 return frecuencia_disparos;
+     }
 	public boolean restarResistencia(){
 		if(resistencia==1){
 			destruir();
@@ -50,6 +51,13 @@ public abstract class Enemigo extends Unidad{
 		return false;
 		}
 	}
+	
+	public void destruir(){
+		cell.destruirEnemigo(this);
+		stopThread();
+		super.destruir();
+		
+	}
 	public void dañarAcero(Acero a){
 		a.dañar(0);
 	}
@@ -57,10 +65,4 @@ public abstract class Enemigo extends Unidad{
 		e.parar();
 	}
 	public abstract void disparar();
-	public void destruir(){
-		isRunning=false;
-		detener(5000);
-		cell.destruir(this);
-		super.destruir();
-	}	
 }

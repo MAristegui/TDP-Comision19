@@ -26,9 +26,7 @@ public abstract class Disparo extends Unidad  {
        }
 
        
-       public boolean Accept(Visitor Vis){
-    	   return Vis.visitDisparo(this);
-       }
+       public abstract boolean Accept(Visitor V);
        public boolean getIsRunning(){
     	   
     	   return isRunning ;

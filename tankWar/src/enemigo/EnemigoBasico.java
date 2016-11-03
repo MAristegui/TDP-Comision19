@@ -11,6 +11,7 @@ public class EnemigoBasico extends Enemigo{
       public EnemigoBasico(celda c, int prof){
     	  super(c,prof);
     	  resistencia=1;
+    	  frecuencia_disparos=3;
     	  speed=40;
     	  graficos=new Icon[4];
 	    	 graficos[0]=new ImageIcon(this.getClass().getResource("/resources/drowzee0.gif"));
@@ -26,6 +27,8 @@ public class EnemigoBasico extends Enemigo{
     	  return 100;
       }
       public void disparar(){
+    	  
     	  DisparoEnemigo d1=new DisparoEnemigo(cell,this,3,15,1);
+    	  
       }
 }

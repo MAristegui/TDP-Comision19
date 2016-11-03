@@ -6,16 +6,15 @@ import java.awt.event.KeyEvent;
 
 import mapa.map;
 public class Juego {
-	private map m;
 	private Jugador jugador;
    public Juego(GUI gui){
 	   map mapa=new map(gui);
-	   
 	  jugador=mapa.getJugador();
 	  
    }
    public void mover(int dir){
 	   int direccion = 0;
+	   if(!jugador.getMoviendo()){
 		switch (dir){
 			case KeyEvent.VK_UP : //Arriba
 				direccion = 2;
@@ -33,14 +32,6 @@ public class Juego {
 				direccion=4;
 				break;
 		}
-		jugador.mover(direccion);
+		jugador.mover(direccion);}
    }
-public boolean Victory() {
-	
-	return m.Victory();
-}
-public boolean Finish() {
-
-	return m.finish();
-}
 }

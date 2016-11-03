@@ -13,7 +13,6 @@ import main.Unidad;
 import main.Visitor;
 public class Jugador extends Unidad{
      protected int vidas;
-     protected int puntaje;
      private map Mapa;
      private State nivel;
      private int alto;
@@ -26,8 +25,7 @@ public class Jugador extends Unidad{
     	 V=new VisitorJugador(this);
     	 cell=c;
     	 vidas=3;
-    	 puntaje=0;
-    	 nivel=new Nivel1(this);
+    	 nivel=new Nivel1(this,0);
     	 graficos=new Icon[4];
     	 grafico=new JLabel();
     	 setGraficos();
@@ -36,22 +34,14 @@ public class Jugador extends Unidad{
      public boolean Accept(Visitor V){
     	 return V.visitPlayer(this);
      }
-     public int getPuntaje(){
-    	 return puntaje;
-     }
      public int getAlto(){
     	 return alto;
      }
      public int getAncho(){
     	 return ancho;
      }
-     public void AumentarPuntaje(int p){
-    	 puntaje+=p;
-    	 if(puntaje>2000){
-    		 vidas++;
-    		 Mapa.cambiarVidas(vidas);
-    	 }
-    	 Mapa.cambiarPuntaje(puntaje);
+     public void sumarPuntaje(int i){
+    	 Mapa.aumentarPuntaje(i);
      }
      public void setVidas(int v){
     	 vidas=v;
@@ -72,14 +62,13 @@ public class Jugador extends Unidad{
      public void impact(){
     	 if(nivel.impact()){
     		 setIsRunning(false);
+    		 t1.interrupt(); //Detiene el hilo del movimiento para que no se mueva graficamente cuando respawnea
     		 destruir();
     		 cell=Mapa.getCelda(20, 25);
-    		 grafico.setBounds(27+16*20, 118+16*25, 26, 26);
+    		 grafico.setBounds(25+16*20, 114+16*25, 30, 30);
     		 dirActual=2;
-    		 setState(new Nivel1(this));
+    		 setState(new Nivel1(this,nivel.getDisparosEnEjecucion()));
     		 setGraficos();
-    		 if(vidas==0)
-    			 Mapa.gameOver();
     		 setVidas(vidas-1);
     		 isRunning=true;
     	 }
@@ -114,13 +103,5 @@ public class Jugador extends Unidad{
      public void setGraficos(){
     	 nivel.setGraficos(graficos,grafico);
      }
-	public void setInvulnerable() {
-		
-		
-	}
-	public void mejorar() {
-		Mapa.mejorar();
-		
-	}
 
 }

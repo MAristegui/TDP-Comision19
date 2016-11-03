@@ -11,6 +11,7 @@ public class EnemigoPoder extends Enemigo{
       public EnemigoPoder(celda c, int prof){
     	  super(c,prof);
     	  resistencia=1;
+    	  frecuencia_disparos=4;
     	  speed=20;
     	  graficos=new Icon[4];
 	    	 graficos[0]=new ImageIcon(this.getClass().getResource("/resources/combusken0.gif"));
@@ -26,7 +27,9 @@ public class EnemigoPoder extends Enemigo{
     	  return 300;
       }
       public void disparar(){
-    	  DisparoEnemigo d1=new DisparoEnemigo(cell,this,3,7,3);
+    	  
+        	  DisparoEnemigo d1=new DisparoEnemigo(cell,this,3,7,3);
+        	 
       }
       
 }

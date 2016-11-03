@@ -11,6 +11,7 @@ public class EnemigoRapido extends Enemigo{
       public EnemigoRapido(celda c, int prof){
     	  super(c,prof);
     	  resistencia=1;
+    	  frecuencia_disparos=5;
     	  speed=13;
     	  graficos=new Icon[4];
 	    	 graficos[0]=new ImageIcon(this.getClass().getResource("/resources/grovyle0.gif"));
@@ -26,6 +27,8 @@ public class EnemigoRapido extends Enemigo{
     	  return 200;
       }
       public void disparar(){
-    	  DisparoEnemigo d1=new DisparoEnemigo(cell,this,3,10,2);
+    	  
+        	  DisparoEnemigo d1=new DisparoEnemigo(cell,this,3,10,2);
+        	 
       }
 }

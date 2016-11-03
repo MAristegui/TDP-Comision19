@@ -10,6 +10,7 @@ import main.Visitor;
 public class DisparoEnemigo extends Disparo{
    public DisparoEnemigo(celda c,Unidad e, int prof,int speed,int tipo){
 	   super(c,e,prof,speed);
+	   V=new VisitorDisparoEnemigo(this);
 	   grafico=new JLabel();
   	   grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/disparoEnemigo"+tipo+".png")));
   	   grafico.setBounds(32+16*cell.getPosX(), 128+16*cell.getPosY(), 16, 16);
@@ -19,10 +20,12 @@ public class DisparoEnemigo extends Disparo{
 	   graficos[1]=new ImageIcon(this.getClass().getResource("/resources/disparoEnemigo"+tipo+".png"));
 	   graficos[2]=new ImageIcon(this.getClass().getResource("/resources/disparoEnemigo"+tipo+".png"));
 	   graficos[3]=new ImageIcon(this.getClass().getResource("/resources/disparoEnemigo"+tipo+".png"));
+	  
   	   DisparoRun d=new DisparoRun(this,dirActual);
-	   V=new VisitorDisparoEnemigo(this);
+	   
    }
    public boolean Accept(Visitor V){
 	   return V.visitDisparoEnemigo(this);
    }
+
 }

@@ -43,10 +43,10 @@ public class VisitorDisparoEnemigo extends Visitor {
 	   public  boolean visitBridge(Bridge b){
 		   return true;
 	   }
-	   public boolean visitDisparo(Disparo d){
+	   public boolean visitDisparoPlayer(DisparoPlayer d){
 		   objeto.destruir();
 		   d.destruir();
-		   return true;
+		   return false;
 	   }
 	   public boolean visitEnemigo(Enemigo e){
 		   return true;

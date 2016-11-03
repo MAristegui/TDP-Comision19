@@ -12,8 +12,8 @@ import powerUp.*;
 import enemigo.Enemigo;
 import jugador.Jugador;
 import main.Visitor;
-public class VisitorDisparo extends Visitor {
-	  public VisitorDisparo(gameObject o){
+public class VisitorDisparoPlayer extends Visitor {
+	  public VisitorDisparoPlayer(gameObject o){
 	    	objeto=o;
 	    }
 	    
@@ -40,16 +40,13 @@ public class VisitorDisparo extends Visitor {
 	   public  boolean visitBridge(Bridge b){
 		   return true;
 	   }
-	   public boolean visitDisparo(Disparo d){
+	   public boolean visitDisparoPlayer(DisparoPlayer d){
 		   objeto.destruir();
 		   d.destruir();
-		   return true;
+		   return false;
 	   }
 	   public boolean visitEnemigo(Enemigo e){
-		   if(e.restarResistencia()){
-			   DisparoPlayer d=(DisparoPlayer)objeto;
-			   d.sumarPuntaje(e.getPuntaje());
-		   }
+		   e.restarResistencia();
 		   objeto.destruir();
 		   return false;
 	   }

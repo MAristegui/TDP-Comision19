@@ -10,6 +10,7 @@ import obstaculos.Water;
 import powerUp.*;
 import disparo.Disparo;
 import disparo.DisparoEnemigo;
+import disparo.DisparoPlayer;
 import jugador.Jugador;
 import main.Visitor;
 public class VisitorEnemigo extends Visitor{
@@ -36,7 +37,10 @@ public class VisitorEnemigo extends Visitor{
    public  boolean visitBridge(Bridge b){
 	   return true;
    }
-   public boolean visitDisparo(Disparo d){
+   public boolean visitDisparoPlayer(DisparoPlayer d){
+	   d.destruir();
+	   Enemigo e=(Enemigo)objeto;
+	   e.restarResistencia();
 	   return true;
    }
    public boolean visitEnemigo(Enemigo e){

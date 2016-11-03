@@ -5,11 +5,11 @@ import javax.swing.Icon;
 import javax.swing.JLabel;
 
 public class Nivel1 extends State implements Runnable{
-    public Nivel1(Jugador jugador){
+    public Nivel1(Jugador jugador,int d){
     	velocidad_jugador=20;
     	velocidad_disparo=12;
     	disparos_simultaneos=1;
-    	disparos_en_ejecucion=0;
+    	disparos_en_ejecucion=d;
     	resistencia=1;
     	this.jugador=jugador;
     }

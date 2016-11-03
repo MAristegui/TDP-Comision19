@@ -11,6 +11,7 @@ public class EnemigoBlindado extends Enemigo{
       public EnemigoBlindado(celda c, int prof){
     	  super(c,prof);
     	  resistencia=4;
+    	  frecuencia_disparos=3;
     	  speed=40;
     	  graficos=new Icon[4];
 	    	 graficos[0]=new ImageIcon(this.getClass().getResource("/resources/graveler0.gif"));
@@ -26,7 +27,8 @@ public class EnemigoBlindado extends Enemigo{
     	  return 400;
       }
       public void disparar(){
-    	  
-    	  DisparoEnemigo d1=new DisparoEnemigo(cell,this,3,10,4);
+    	  if(!getMoviendo()){
+        	  DisparoEnemigo d1=new DisparoEnemigo(cell,this,3,10,4);
+        	  }
       }
 }
