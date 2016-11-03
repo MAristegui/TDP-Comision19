@@ -11,7 +11,7 @@ public class Aguila extends obstaculo{
     public boolean Accept(Visitor v){
     	return v.visitAguila(this);
     }
-    public void gameOver(){
+    public void finish(){
     	cell.gameOver();
     }
 }

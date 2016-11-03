@@ -25,7 +25,11 @@ public class Jugador extends Unidad{
     	 V=new VisitorJugador(this);
     	 cell=c;
     	 vidas=3;
+<<<<<<< HEAD
     	 nivel=new Nivel1(this,0);
+=======
+    	 nivel=new Nivel1(this);
+>>>>>>> origin/master
     	 graficos=new Icon[4];
     	 grafico=new JLabel();
     	 setGraficos();
@@ -34,15 +38,24 @@ public class Jugador extends Unidad{
      public boolean Accept(Visitor V){
     	 return V.visitPlayer(this);
      }
+<<<<<<< HEAD
+=======
+     public void addPowerUp(){
+    	 Mapa.addPwup();
+     }
+>>>>>>> origin/master
      public int getAlto(){
     	 return alto;
      }
      public int getAncho(){
     	 return ancho;
      }
+<<<<<<< HEAD
      public void sumarPuntaje(int i){
     	 Mapa.aumentarPuntaje(i);
      }
+=======
+>>>>>>> origin/master
      public void setVidas(int v){
     	 vidas=v;
     	 Mapa.cambiarVidas(vidas);
@@ -103,5 +116,24 @@ public class Jugador extends Unidad{
      public void setGraficos(){
     	 nivel.setGraficos(graficos,grafico);
      }
+<<<<<<< HEAD
+=======
+	public void setInvulnerable() {
+		Phantom n=new Phantom(this);
+		n.act();
+	}
+	public void setI(){
+		System.out.println("SOS GAY ");
+		V=new VisitorInvulnerable(this);
+	}
+	public void setV(){
+		V=new VisitorJugador(this);
+		System.out.println("VOS TAMBIEN ROBERTO JAJAJA ");
+	}
+	public void mejorar() {
+		Mapa.mejorar();
+		
+	}
+>>>>>>> origin/master
 
 }

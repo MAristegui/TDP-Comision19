@@ -24,6 +24,10 @@ public class DisparoPlayer extends Disparo{
 	   graficos[3]=new ImageIcon(this.getClass().getResource("/resources/disparo.png"));
   	   DisparoRun d=new DisparoRun(this,dirActual);
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 
     	 public void destruir(){
       	   super.destruir();
@@ -31,8 +35,18 @@ public class DisparoPlayer extends Disparo{
       	   jug.restarDisparosEnEjecucion();
       	   
          }
+<<<<<<< HEAD
     	 public boolean Accept(Visitor V){
     		 return V.visitDisparoPlayer(this);
     	 }
+=======
+
+
+		@Override
+		public boolean Accept(Visitor V) {
+			// TODO Auto-generated method stub
+			return V.visitDisparo(this);
+		}
+>>>>>>> origin/master
     
 }

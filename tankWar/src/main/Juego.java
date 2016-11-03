@@ -10,7 +10,7 @@ public class Juego {
    public Juego(GUI gui){
 	   map mapa=new map(gui);
 	  jugador=mapa.getJugador();
-	  
+	  gui.act();
    }
    public void mover(int dir){
 	   int direccion = 0;
@@ -34,4 +34,8 @@ public class Juego {
 		}
 		jugador.mover(direccion);}
    }
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 }

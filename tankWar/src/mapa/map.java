@@ -39,6 +39,7 @@ public class map implements Runnable{
     private JLabel puntaje;
     private int score;
     private JLabel vidas;
+<<<<<<< HEAD
     private int matados=0;
     private JLabel enemigosRestantes;
     protected Collection<celda> mejorables;
@@ -48,6 +49,20 @@ public class map implements Runnable{
     private  Collection<Enemigo> EnemigosActuales;
     private int enemigosTotales=16;
     public map(GUI migui){
+=======
+    private JLabel Restantes;
+    //private boolean gameOver=false;
+    private EnemyFactory factory;
+    private Collection<Enemigo> EnemigosActuales;
+    protected Collection<celda> mejorables;
+    private int Enemigos;
+	private boolean perdiste;
+	private int obtenido;
+	private boolean Ganaste;
+	private int matados;
+	private int score;
+     public map(GUI migui){
+>>>>>>> origin/master
     	 /*El mapa tiene una longitud de 27x27 celdas de 16 pixeles cada una.*/
     	 gui=migui;
     	 score=0;
@@ -66,11 +81,24 @@ public class map implements Runnable{
     	 vidas.setFont(new Font("Serif",Font.PLAIN,20));
     	 vidas.setForeground(Color.lightGray);
     	 vidas.setBounds(517,235,100,32);
+<<<<<<< HEAD
     	 enemigosRestantes= new JLabel("16");
     	 enemigosRestantes.setFont(new Font("Serif",Font.PLAIN,20));
     	 enemigosRestantes.setForeground(Color.lightGray);
     	 enemigosRestantes.setBounds(517,350,100,32);
     	 gui.add(enemigosRestantes,new Integer(2));
+=======
+    	 Enemigos=16;
+    	 Restantes=new JLabel("16");
+    	 Restantes.setFont(new Font("Serif", Font.PLAIN, 20));
+    	 Restantes.setForeground(Color.lightGray);
+    	 Restantes.setBounds(517,350,100,32);
+    	 gui.add(Restantes,new Integer(2));
+    	 perdiste=false;
+    	 Ganaste=false;
+    	 obtenido=0;
+    	 matados=0;
+>>>>>>> origin/master
     	 gui.add(vidas,new Integer(2));
     	 Thread t=new Thread(this);
     	 factory=new EnemyFactory();
@@ -149,8 +177,15 @@ public class map implements Runnable{
      public void actualizarPuntaje(){
     	 puntaje.setText(score+"");
      }
+<<<<<<< HEAD
      public void actualizarEnemigosRestantes(){
     	 enemigosRestantes.setText(16-Enemigos_matados+"");
+=======
+     public void addPwup(){
+    	 score=score+500;
+    	 obtenido=obtenido+500;
+    	 puntaje.setText(score+"");
+>>>>>>> origin/master
      }
      public void cambiarVidas(int life){
     	 vidas.setText(life+"");
@@ -209,7 +244,12 @@ public class map implements Runnable{
   	   JLabel graf=player.getGrafico();
   	   graf.setBounds(25+16*20, 114+16*25, 30, 30);
   	   gui.add(graf,new Integer(2));
+<<<<<<< HEAD
   	  
+=======
+ 	   
+ 	   
+>>>>>>> origin/master
      }
      private void añadirPowerUp(int i, int j,int tipo){
     	 if(celdas[i][j].getObjects()[1]==null&&celdas[i][j].getObjects()[4]==null){
@@ -245,6 +285,7 @@ public class map implements Runnable{
     	 return gui;
      }
      public void run(){
+<<<<<<< HEAD
           while(!gameOver){
         	  if(EnemigosActuales.size()<4)
         	  agregarEnemigo();
@@ -258,6 +299,33 @@ public class map implements Runnable{
 				e.printStackTrace();
 			}
           }
+=======
+          
+
+  	   while(!perdiste && !Ganaste){
+  		   
+      		 int Actuales=EnemigosActuales.size();
+      		 System.out.println(Actuales);
+      		 try {
+      			 if(obtenido>=2000){
+      				 player.setVidas(player.getVidas()+1);
+      				 obtenido=0;
+      			 	}
+      			 if (Actuales<4 && Enemigos>0)
+      				 agregarEnemigo();
+      			if (matados==4){
+      				addPowerUP();
+      				matados=0;
+      			}
+  				Thread.sleep(1500);
+  			} catch (InterruptedException e) {
+  				// TODO Auto-generated catch block
+  				e.printStackTrace();
+  			}
+      		 
+      		
+      	} 
+>>>>>>> origin/master
     	 
     	  
     	
@@ -317,6 +385,7 @@ public class map implements Runnable{
     			 break;
     		 }
     	 }
+<<<<<<< HEAD
      }
      private void agregarPowerUp(){
     	 Random r=new Random();
@@ -366,18 +435,73 @@ public class map implements Runnable{
   		}
   		}
   	}
+=======
+>>>>>>> origin/master
      
      public void detenerTiempo(){
     	 for(Enemigo e:EnemigosActuales){
     		 e.detener(10000);
     	 }
      }
+<<<<<<< HEAD
      public void eliminarEnemigos(){
     	 LinkedList<Enemigo> eliminar= new LinkedList<Enemigo>();
          
          for(Enemigo el:EnemigosActuales)
      		{
         	 eliminar.add(el);
+=======
+    
+    
+     public void mejorar() {
+ 		//Cambia las paredes por acero nuevas.
+ 		for(celda c:mejorables){
+ 			if(c.getObjects()[1]==null){
+ 				if(c.getObjects()[0]!=null)
+ 					c.getObjects()[0].destruir();
+ 			c.getObjects()[0]=new Acero(c,0);
+ 			JLabel graf=c.getObjects()[0].getGrafico();
+ 			graf.setBounds(32+16*c.getPosX(),128+16*c.getPosY(),16,16);
+ 		    gui.add(graf,new Integer(1));
+ 		    }
+ 		}
+ 		
+ 	}
+     public void addPowerUP(){
+ 		Random r=new Random();
+ 		int x=r.nextInt(25)+1;
+ 		int y=r.nextInt(25)+1;
+ 		while (true){
+ 			
+ 		if(celdas[x][y].getObjects()[4]==null && celdas[x][y].getObjects()[0]==null){
+ 		   gameObject[] objetos2=celdas[x][y].getObjects();
+ 		   int c=r.nextInt(6)+0;
+ 		   PowerUp p;
+ 		   switch(c){
+ 		   case 0:
+ 			   objetos2[4]=new EliminarEnemigos(celdas[x][y],4);
+ 		  	  
+ 		  	   break;
+ 		  case 1:
+ 			   objetos2[4]=new Casco(celdas[x][y],4);
+ 		  	
+ 		  	   break;
+ 		   case 2:
+ 			   objetos2[4]=new Estrella(celdas[x][y],4);
+
+ 		  	   break;
+ 		   case 3:
+ 			   objetos2[4]=new AumentarVida(celdas[x][y],4);
+
+ 		  	   break; 
+ 		  	   
+ 		   case 4:
+ 			   objetos2[4]=new DetenerTiempo(celdas[x][y],4);
+
+ 		  	   break;
+ 		   case 5:   
+ 			   objetos2[4]=new Pala(celdas[x][y],4);
+>>>>>>> origin/master
 
      		}
         	
@@ -402,6 +526,7 @@ public class map implements Runnable{
     	 Enemigos_matados++;
     	 actualizarEnemigosRestantes();
     	 score=score+e.getPuntaje();
+<<<<<<< HEAD
     	 actualizarPuntaje();
     	 EnemigosActuales.remove(e);
     	 matados++;
@@ -426,6 +551,44 @@ public class map implements Runnable{
   		    gui.add(graf,new Integer(1));
   		    }
   		}
+=======
+    	 obtenido=obtenido+e.getPuntaje();
+    	 EnemigosActuales.remove(e);
+    	 Restantes.setText((Enemigos+EnemigosActuales.size())+"");
+    	 gui.repaint();
+    	 if(EnemigosActuales.size()==0 && Enemigos==0)
+    		 {Ganaste=true;
+    		 gui.Victory();
+    		 }
+    		 
+     }
+
+ 	public void gameOver() {
+		System.out.println("ROBERTO PERDIO JAJAJA ");
+		if(player!=null)
+			{player.destruir();
+				player=null;
+			}
+		perdiste=true;
+		gui.Finish();
+	}
+ 	
+	 
+ 	public void eliminarEnemigos(){
+        LinkedList<Enemigo> eliminar= new LinkedList<Enemigo>();
+        
+        for(Enemigo el:EnemigosActuales)
+    		{
+       	 eliminar.add(el);
+    			System.out.println(el);
+    		}
+       	
+       	for(Enemigo el:eliminar)
+       		el.destruir();
+       	
+       	EnemigosActuales.clear();
+       }
+>>>>>>> origin/master
 
 }
 }

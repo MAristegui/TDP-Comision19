@@ -25,8 +25,11 @@ public abstract class Disparo extends Unidad  {
 
        }
 
+<<<<<<< HEAD
        
        public abstract boolean Accept(Visitor V);
+=======
+>>>>>>> origin/master
        public boolean getIsRunning(){
     	   
     	   return isRunning ;

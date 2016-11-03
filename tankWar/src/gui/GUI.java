@@ -15,12 +15,23 @@ import main.Juego;
 import java.awt.event.*;
 
 
+<<<<<<< HEAD
 public class GUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private JLayeredPane contentPane;
 	private Juego j;
 
+=======
+public class GUI extends JFrame implements Runnable{
+
+	private JLayeredPane contentPane;
+	private Juego j;
+	private Thread t;
+	private GUI frame;
+	private boolean ganar;
+	private boolean perder;
+>>>>>>> origin/master
 
 	/**
 	 * Launch the application.
@@ -63,8 +74,15 @@ public class GUI extends JFrame {
 		fondo.setBounds(0, 0, 592, 592);
 		contentPane.add(fondo,new Integer(0));
 		
+<<<<<<< HEAD
 		
 		j = new Juego(this);
+=======
+		ganar=false;
+		perder=false;
+		j = new Juego(this);
+		
+>>>>>>> origin/master
 		addKeyListener(new KeyAdapter() {
 			
 			public void keyPressed(KeyEvent arg0) {
@@ -77,6 +95,50 @@ public class GUI extends JFrame {
 	j.mover(key.getKeyCode());
 
 	}
+<<<<<<< HEAD
+=======
+	/**
+	 * Metodo que se encarga de cerrar la ventana principal del juego.
+	 */
+	public void cerrar(){
+		System.exit(1);
+	}
+	public void act(){
+		Thread t=new Thread(this);
+		t.start();
+	}
+	public void Victory(){
+		ganar=true;
+	}
+	public void Finish(){
+		perder=true;
+	}
+	/**
+	 * Metodo que corrobora si el jugador gano o perdio el juego.
+	 */
+	public void run() {
+		while (true){
+			
+		if(ganar){
+			System.out.println("max carreado");
+			cerrar();
+		}
+		if(perder){
+			System.out.println("VAMOS GABY DALEEEEEEEEEEEEEE");
+			cerrar();
+			
+		}
+			
+			try {
+				t.sleep(1500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
+>>>>>>> origin/master
    
   public void gameOver(){
 	  contentPane=new JLayeredPane();
