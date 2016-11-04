@@ -343,10 +343,10 @@ public class map implements Runnable{
     			 gameObject[] objetos=celdas[3][2].getObjects();
     			 if (objetos[1]==null){
     				 Enemigo e=factory.crearEnemigo(celdas[3][2], 1);
+                                                         EnemigosActuales.add(e);
     				 objetos[1]=e;
-    				 JLabel grafico=e.getGrafico();
+                                                         JLabel grafico=e.getGrafico();
     				 grafico.setBounds(27+16*3, 118+16*2, 26, 26);
-    				 EnemigosActuales.add(e);
     				 gui.add(grafico,new Integer(2));
     			 }
     			 break;
@@ -354,10 +354,10 @@ public class map implements Runnable{
     			 objetos=celdas[16][10].getObjects();
     			 if (objetos[1]==null){
     				 Enemigo e=factory.crearEnemigo(celdas[16][10], 1);
-    				 objetos[1]=e;
+    				 EnemigosActuales.add(e);
+                                                         objetos[1]=e;
     				 JLabel grafico=e.getGrafico();
     				 grafico.setBounds(27+16*16, 118+16*10, 26, 26);
-    				 EnemigosActuales.add(e);
     				 gui.add(grafico,new Integer(2));
     			 }
     			 break;
@@ -365,21 +365,21 @@ public class map implements Runnable{
     			 objetos=celdas[9][15].getObjects();
     			 if (objetos[1]==null){
     				 Enemigo e=factory.crearEnemigo(celdas[9][15], 1);
-    				 objetos[1]=e;
+    				 EnemigosActuales.add(e);
+                                                         objetos[1]=e;
     				 JLabel grafico=e.getGrafico();
     				 grafico.setBounds(27+16*9, 118+16*15, 26, 26);
-    				 EnemigosActuales.add(e);
-    				 gui.add(grafico,new Integer(2));
+    				gui.add(grafico,new Integer(2));
     			 }
     			 break;
     		 case 3:
     			 objetos=celdas[14][21].getObjects();
     			 if (objetos[1]==null){
     				 Enemigo e=factory.crearEnemigo(celdas[14][21], 1);
-    				 objetos[1]=e;
+    				 EnemigosActuales.add(e);
+				  objetos[1]=e;
     				 JLabel grafico=e.getGrafico();
     				 grafico.setBounds(27+16*14, 118+16*21, 26, 26);
-    				 EnemigosActuales.add(e);
     				 gui.add(grafico,new Integer(2));
     			 }
     			 break;
