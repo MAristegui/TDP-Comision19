@@ -1,15 +1,15 @@
 package obstaculos;
-
-
-import java.net.URL;
+//import java.applet.Applet;
+//import java.applet.AudioClip;
+//import java.net.URL;
 
 import javax.swing.*;
 
+//import jugador.State;
 import main.Visitor;
 import mapa.celda;
 public class Rock extends obstaculo implements Runnable{
 	private int resistencia;
-	private static URL urll;
 	private Thread t;
 	private int sprite;
     public Rock(celda c,int prof,int sprite){
@@ -18,8 +18,7 @@ public class Rock extends obstaculo implements Runnable{
     	this.sprite=sprite;
     	resistencia=3;
     	grafico=new JLabel();
-    	urll = (Rock.class.getClassLoader().getResource("resources/b_"+sprite+".png"));
-    	grafico.setIcon(new ImageIcon(urll));
+    	grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/b_"+sprite+".png")));
     	
     	
     }
@@ -54,32 +53,27 @@ public class Rock extends obstaculo implements Runnable{
     public void run(){
     	if(!isRunning){
     	cell.getObjects()[getProfundidad()]=null;
-    	urll = (Acero.class.getClassLoader().getResource("resources/piedra1_"+sprite+".png"));
-    	grafico.setIcon(new ImageIcon(urll));
+    	grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/piedra1_"+sprite+".png")));
     	
     	try{
     		Thread.sleep(80);
     	}catch(Exception e){}
-    	urll = (Acero.class.getClassLoader().getResource("resources/piedra2_"+sprite+".png"));
-grafico.setIcon(new ImageIcon(urll));
+grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/piedra2_"+sprite+".png")));
     	
     	try{
     		Thread.sleep(80);
     	}catch(Exception e){}
-    	urll = (Acero.class.getClassLoader().getResource("resources/piedra3_"+sprite+".png"));
-grafico.setIcon(new ImageIcon(urll));
+grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/piedra3_"+sprite+".png")));
     	
     	try{
     		Thread.sleep(80);
     	}catch(Exception e){}
-    	urll = (Acero.class.getClassLoader().getResource("resources/piedra4_"+sprite+".png"));
-grafico.setIcon(new ImageIcon(urll));
+grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/piedra4_"+sprite+".png")));
     	
     	try{
     		Thread.sleep(80);
     	}catch(Exception e){}
-    	urll = (Acero.class.getClassLoader().getResource("resources/piedra5_"+sprite+".png"));
-grafico.setIcon(new ImageIcon(urll));
+grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/piedra5_"+sprite+".png")));
     	
     	try{
     		Thread.sleep(80);
@@ -88,27 +82,23 @@ grafico.setIcon(new ImageIcon(urll));
     	
     	}
     	else{
-    		urll = (Acero.class.getClassLoader().getResource("resources/piedra1_"+sprite+".png"));
-    		grafico.setIcon(new ImageIcon(urll));
+    		grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/piedra1_"+sprite+".png")));
         	
         	try{
         		Thread.sleep(60);
         	}catch(Exception e){}
-        	urll = (Acero.class.getClassLoader().getResource("resources/piedra2_"+sprite+".png"));
-    grafico.setIcon(new ImageIcon(urll));
+    grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/piedra2_"+sprite+".png")));
         	
         	try{
         		Thread.sleep(60);
         	}catch(Exception e){}
-        	urll = (Acero.class.getClassLoader().getResource("resources/piedra3_"+sprite+".png"));
-    grafico.setIcon(new ImageIcon(urll));
+    grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/piedra3_"+sprite+".png")));
         	try {
 			    Thread.sleep(60);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-        	urll = (Acero.class.getClassLoader().getResource("resources/piedra1_"+sprite+".png"));
-        	    grafico.setIcon(new ImageIcon(urll)); 
+        	    grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/piedra1_"+sprite+".png"))); 
     	}
     	
     }
