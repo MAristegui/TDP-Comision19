@@ -9,11 +9,13 @@ import disparo.DisparoEnemigo;
 import mapa.celda;
 
 public class EnemigoPoder extends Enemigo{
+	private int tipo;
       public EnemigoPoder(celda c, int prof,int tipo){
     	  super(c,prof);
     	  resistencia=1;
     	  frecuencia_disparos=4;
     	  speed=20;
+    	  this.tipo=tipo;
     	  graficos=new Icon[4];
     	  switch(tipo){
     	  case 0:
@@ -38,7 +40,11 @@ public class EnemigoPoder extends Enemigo{
     	  return 300;
       }
       public void disparar(){
-    	  DisparoEnemigo d1=new DisparoEnemigo(cell,this,3,7,3);
+    	
+    	  if(tipo==0)
+    	  new DisparoEnemigo(cell,this,3,7,3);
+    	  else
+    		  new DisparoEnemigo(cell,this,3,7,5);
       }
       
       public void dañarAcero(Acero a){

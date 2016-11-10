@@ -37,6 +37,6 @@ public class EnemigoBlindado extends Enemigo{
     	  return 400;
       }
       public void disparar(){
-    	  DisparoEnemigo d1=new DisparoEnemigo(cell,this,3,10,4);
+    	  new DisparoEnemigo(cell,this,3,10,4);
       }
 }

@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 
 public class Nivel1 extends State implements Runnable{
     public Nivel1(Jugador jugador,int d){
-    	velocidad_jugador=20;
+    	velocidad_jugador=16;
     	velocidad_disparo=10;
     	disparos_simultaneos=1;
     	disparos_en_ejecucion=d;

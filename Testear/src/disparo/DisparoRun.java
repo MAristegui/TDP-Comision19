@@ -24,7 +24,7 @@ public class DisparoRun implements Runnable{
         		  
   		            d.mover(dirActual);
   		          try{
-  		        	Thread.sleep(50);  
+  		        	Thread.sleep(20);  
   		          }
   		          catch (Exception e){;}
   		            }

@@ -2,6 +2,7 @@ package powerUp;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import gui.GUI;
 import jugador.Jugador;
 import main.*;
 import mapa.*;
@@ -17,6 +18,7 @@ public class AumentarVida extends PowerUp {
 	
 	
 	public void AplicarPowerUP(Jugador J){
+		GUI.playSound("aumentarVida.wav");
 		J.setVidas(J.getVidas()+1);
 		this.destruir();
 	}

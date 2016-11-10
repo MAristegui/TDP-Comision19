@@ -36,7 +36,7 @@ public abstract class Enemigo extends Unidad{
      public int getFrecuenciaDisparos(){
     	 return frecuencia_disparos;
      }
-	public boolean restarResistencia(){
+	public boolean restarResistencia(){ 
 		if(resistencia==1){
 			destruir();
 			return true;
@@ -61,4 +61,10 @@ public abstract class Enemigo extends Unidad{
 		e.parar(1);
 	}
 	public abstract void disparar();
+
+
+	public void parar() {
+		e.parar();
+		
+	}
 }

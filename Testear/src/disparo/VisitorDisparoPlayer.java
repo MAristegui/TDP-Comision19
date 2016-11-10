@@ -10,6 +10,7 @@ import obstaculos.Rock;
 import obstaculos.Water;
 import powerUp.*;
 import enemigo.Enemigo;
+import gui.GUI;
 import jugador.Jugador;
 import main.Visitor;
 public class VisitorDisparoPlayer extends Visitor {
@@ -25,7 +26,7 @@ public class VisitorDisparoPlayer extends Visitor {
 	   public  boolean VisitWater(Water w){
 		   return true;
 	   }
-	   public  boolean visitPared(Pared p){
+	   public  boolean visitPared(Pared p){  
 		   objeto.destruir();
 		   p.ColisionDisparo();
 		   return false;
@@ -40,7 +41,7 @@ public class VisitorDisparoPlayer extends Visitor {
 	   public  boolean visitBridge(Bridge b){
 		   return true;
 	   }
-	   public boolean visitDisparoPlayer(DisparoPlayer d){
+	   public boolean visitDisparoPlayer(DisparoPlayer d){ 
 		   objeto.destruir();
 		   d.destruir();
 		   return false;
@@ -54,12 +55,13 @@ public class VisitorDisparoPlayer extends Visitor {
 	   {
 		   return true;
 	   }
-	   public boolean visitDisparoEnemigo(DisparoEnemigo d){
+	   public boolean visitDisparoEnemigo(DisparoEnemigo d){ 
 		   objeto.destruir();
 		   d.destruir();
 		   return false;
 	   }
 	   public boolean visitAcero(Acero a){
+		   GUI.playSound("golpearAcero.wav");
 		   objeto.destruir();
 		   Disparo d=(Disparo)objeto;
 		   d.dañarAcero(a);

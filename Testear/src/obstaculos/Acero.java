@@ -1,10 +1,6 @@
 package obstaculos;
-
-import java.net.URL;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
 import main.Visitor;
 import mapa.celda;
 
@@ -12,20 +8,19 @@ public class Acero extends obstaculo implements Runnable{
 	Thread t;
 	private int resistencia;
 	private int sprite;
-	private static URL urll;
 	   public Acero(celda c,int prof){
 		   resistencia=4;
 		   cell=c;
 		   profundidad=prof;
 		   grafico=new JLabel();
-		   urll = (Acero.class.getClassLoader().getResource("resources/Acero_0.png"));
-		   grafico.setIcon(new ImageIcon(urll));
+		   grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/Acero_0.png")));
 	   }
 	public boolean Accept(Visitor V) {
 		return V.visitAcero(this);
 	}
    public void dañar(int i){
-	   if(resistencia==1)
+	   
+	   if(resistencia==1&&i!=0)
 		   destruir();         
 	   else{
 		   resistencia-=i;
@@ -44,32 +39,27 @@ public class Acero extends obstaculo implements Runnable{
    public void run(){
 	if(!isRunning){
    	cell.getObjects()[getProfundidad()]=null;
-   	urll = (Acero.class.getClassLoader().getResource("resources/Acero_0.png"));
-   	grafico.setIcon(new ImageIcon(urll));
+    grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/Acero_0.png")));
    	
    	try{
    		Thread.sleep(80);
    	}catch(Exception e){}
-   	urll = (Acero.class.getClassLoader().getResource("resources/Acero2.png"));
-grafico.setIcon(new ImageIcon(urll));
+    grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/Acero2.png")));
    	
    	try{
    		Thread.sleep(80);
    	}catch(Exception e){}
-   	urll = (Acero.class.getClassLoader().getResource("resources/Acero3.png"));
-grafico.setIcon(new ImageIcon(urll));
+    grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/Acero3.png")));
    	
    	try{
    		Thread.sleep(80);
    	}catch(Exception e){}
-   	urll = (Acero.class.getClassLoader().getResource("resources/Acero4.png"));
-grafico.setIcon(new ImageIcon(urll));
+    grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/Acero4.png")));
    	
    	try{
    		Thread.sleep(80);
    	}catch(Exception e){}
-   	urll = (Acero.class.getClassLoader().getResource("resources/Acero5.png"));
-grafico.setIcon(new ImageIcon(urll));
+    grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/Acero5.png")));
    	
    	try{
    		Thread.sleep(80);
@@ -78,26 +68,22 @@ grafico.setIcon(new ImageIcon(urll));
    	
 	}
 	else{
-		urll = (Acero.class.getClassLoader().getResource("resources/Acero_0.png"));
-	 	grafico.setIcon(new ImageIcon(urll));
+		 grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/Acero_0.png")));
 	   	
 	   	try{
 	   		Thread.sleep(60);
 	   	}catch(Exception e){}
-	   	urll = (Acero.class.getClassLoader().getResource("resources/Acero2.png"));
-	grafico.setIcon(new ImageIcon(urll));
+	    grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/Acero2.png")));
 	   	
 	   	try{
 	   		Thread.sleep(60);
 	   	}catch(Exception e){}
-	   	urll = (Acero.class.getClassLoader().getResource("resources/Acero3.png"));
-	grafico.setIcon(new ImageIcon(urll));
+	    grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/Acero3.png")));
 	   	
 	   	try{
 	   		Thread.sleep(60);
 	   	}catch(Exception e){}
-	   	urll = (Acero.class.getClassLoader().getResource("resources/Acero_0.png"));
-	grafico.setIcon(new ImageIcon(urll));
+	    grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/Acero_0.png")));
 	}
    }
 }

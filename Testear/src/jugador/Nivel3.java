@@ -7,7 +7,7 @@ import obstaculos.Acero;
 public class Nivel3 extends State implements Runnable{
     public Nivel3(Jugador jugador){
     	this.jugador=jugador;
-    	velocidad_jugador=20;
+    	velocidad_jugador=16;
     	velocidad_disparo=8;
  	    disparos_simultaneos=2;
  	    resistencia=2;

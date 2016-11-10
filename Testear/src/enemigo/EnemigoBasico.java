@@ -37,6 +37,7 @@ public class EnemigoBasico extends Enemigo{
     	  return 100;
       }
       public void disparar(){
-    	  DisparoEnemigo d1=new DisparoEnemigo(cell,this,3,15,1);
+    	  
+    	  new DisparoEnemigo(cell,this,3,15,1);
       }
 }

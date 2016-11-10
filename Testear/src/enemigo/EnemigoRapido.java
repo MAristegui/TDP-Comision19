@@ -8,11 +8,13 @@ import disparo.DisparoEnemigo;
 import mapa.celda;
 
 public class EnemigoRapido extends Enemigo{
+	private int tipo;
       public EnemigoRapido(celda c, int prof,int tipo){
     	  super(c,prof);
     	  resistencia=1;
     	  frecuencia_disparos=5;
     	  speed=13;
+    	  this.tipo=tipo;
     	  graficos=new Icon[4];
     	  switch(tipo){
     	  case 0:
@@ -36,6 +38,10 @@ public class EnemigoRapido extends Enemigo{
     	  return 200;
       }
       public void disparar(){
-    	  DisparoEnemigo d1=new DisparoEnemigo(cell,this,3,10,2);
+    	
+    	  if(tipo==0)
+    	 new DisparoEnemigo(cell,this,3,10,2);
+    	  else
+    		  new DisparoEnemigo(cell,this,3,10,5);
       }
 }

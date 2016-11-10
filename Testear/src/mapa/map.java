@@ -8,7 +8,6 @@ import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.Font;
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -17,7 +16,6 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Random;
 import java.io.FileNotFoundException;
-import java.net.URL;
 
 import javax.swing.*;
 
@@ -33,7 +31,6 @@ public class map implements Runnable{
     private celda[][] celdas;
     private Jugador player;
     private JLabel puntaje;
-    private static URL url;
     private int score;
     private JLabel vidas;
     int contEnemigos=0;
@@ -52,7 +49,7 @@ public class map implements Runnable{
     public map(GUI migui,int sprites,int score,Jugador player,Juego juego){
     	 /*El mapa tiene una longitud de 27x27 celdas de 16 pixeles cada una.*/
    	 java.net.URL url = GUI.class.getResource("/resources/FondoS.wav"); 
-          clip = Applet.newAudioClip(url);
+         clip = Applet.newAudioClip(url);
          clip.loop();
     	 gui=migui;
     	 sprite=sprites;
@@ -173,7 +170,10 @@ public class map implements Runnable{
        player.setCelda(celdas[20][24]);
   	   JLabel graf=player.getGrafico();
   	   graf.setBounds(25+16*20, 114+16*24, 30, 30);
+  	   JLabel graf2=player.getGraficoInvulnerable();
+  	   graf2.setBounds(25+16*20, 114+16*24, 30, 30);
   	   gui.add(graf,new Integer(2));
+  	   gui.add(graf2,new Integer(3));
   	  
      }
      
@@ -190,10 +190,10 @@ public class map implements Runnable{
   			} catch (InterruptedException e) {
   				e.printStackTrace();
   			}
-        	  if(EnemigosActuales.size()<3&&enemigosTotales>0)
+        	  if(EnemigosActuales.size()<3&&enemigosTotales>0&&!gameOver)
         	  if(contEnemigos!=16 )
         	  agregarEnemigo();
-        	  if(matados==3){
+        	  if(matados>=3){
         	  agregarPowerUp();
         	  matados=0;
         	  }
@@ -207,7 +207,6 @@ public class map implements Runnable{
      private void agregarEnemigo(){
     	 if(enemigosTotales<=0){
     		 gameOver=true;
-    		 System.out.println("Ganaste el juego papu.");
     	 }
     	 else{
     		 Random rnd=new Random();
@@ -273,7 +272,7 @@ public class map implements Runnable{
   			
   		if(celdas[x][y].getObjects()[4]==null && celdas[x][y].getObjects()[0]==null){
   		   gameObject[] objetos2=celdas[x][y].getObjects();
-  		   int c=r.nextInt(5)+0;
+  		   int c=r.nextInt(6)+0;
   		   PowerUp p;
   		   switch(c){
   		   case 0:
@@ -297,12 +296,15 @@ public class map implements Runnable{
   			   objetos2[4]=new ConvertirAcero(celdas[x][y],4);
 
   		  	   break;
+  		   case 5:
+  			   objetos2[4]=new Invulnerable(celdas[x][y],4);
   		  	   
   				}
   		   p=(PowerUp) objetos2[4];
   		   JLabel graf2=p.getGrafico();
   	  	   graf2.setBounds(32+16*x, 128+16*y, 16, 16);
-  	  	   gui.add(graf2,new Integer(2));
+  	  	   GUI.playSound("aparecePowerUp.wav");
+  	  	   gui.add(graf2,new Integer(4));
   		   	break;
   			}
   		else
@@ -350,23 +352,17 @@ public class map implements Runnable{
     	 if(Enemigos_matados==16)
     		 {
     		 gameOver=true;
-    		 gameOver();
+    		 clip.stop();
+    		 juego.ganar(score);
     		 }
     		 
      }
      public void gameOver() {
 
          
-         for(Enemigo el:EnemigosActuales)
-     		{
-        	 el.setIsRunning(false);
-
-     		}
-        	
-        	
-        	
-        	EnemigosActuales.clear();
-    	 gameOver=true;
+//         int puntaje=score;
+         gameOver=true;
+         eliminarEnemigos();
     	 clip.stop();
 		juego.gameOver();
 		

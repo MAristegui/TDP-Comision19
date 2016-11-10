@@ -1,10 +1,8 @@
 package disparo;
 import mapa.celda;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
 import main.Unidad;
 import main.Visitor;
 public class DisparoEnemigo extends Disparo{
@@ -27,5 +25,4 @@ public class DisparoEnemigo extends Disparo{
    public boolean Accept(Visitor V){
 	   return V.visitDisparoEnemigo(this);
    }
-
 }

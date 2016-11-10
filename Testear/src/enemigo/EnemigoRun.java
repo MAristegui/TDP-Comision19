@@ -33,10 +33,9 @@ public class EnemigoRun implements Runnable{
     		            	}
     		            }
     		            
-    		            try{
+    		          
         		        	Thread.sleep(100);  
-        		          }
-        		          catch (Exception e){;}
+        		      
 
     		        
             	 }else

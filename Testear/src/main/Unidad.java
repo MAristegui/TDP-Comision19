@@ -6,6 +6,7 @@ import obstaculos.Acero;
 import jugador.Jugador;
 
 import javax.swing.Icon;
+import javax.swing.JLabel;
 
 import mapa.celda;
 public abstract class Unidad extends gameObject implements Runnable {
@@ -14,6 +15,7 @@ public abstract class Unidad extends gameObject implements Runnable {
     protected Icon[] graficos;
     protected int dirActual=2;
     protected Thread t1;
+    protected JLabel invulnerable=new JLabel();
     private volatile  boolean moviendo=false;
    
     
@@ -128,15 +130,23 @@ public int  getVelocidad(){
 		  switch(dirActual){
 		  case 0:
 			  grafico.setBounds(grafico.getX(), grafico.getY()+1, getAncho(), getAlto());
+			  if(invulnerable.getIcon()!=null)
+				  invulnerable.setBounds(grafico.getX(), grafico.getY()+1, getAncho(), getAlto());
 			  break;
 		  case 1:
+			  if(invulnerable.getIcon()!=null)
+				  invulnerable.setBounds(grafico.getX()-1, grafico.getY(), getAncho(), getAlto());
 			  grafico.setBounds(grafico.getX()-1, grafico.getY(), getAncho(), getAlto());
 			  break;
 		  case 2:
 			  grafico.setBounds(grafico.getX(), grafico.getY()-1, getAncho(), getAlto());
+			  if(invulnerable.getIcon()!=null)
+				  invulnerable.setBounds(grafico.getX(), grafico.getY()-1, getAncho(), getAlto());
 			  break;
 		  case 3:
 			  grafico.setBounds(grafico.getX()+1, grafico.getY(), getAncho(), getAlto());
+			  if(invulnerable.getIcon()!=null)
+				  invulnerable.setBounds(grafico.getX()+1, grafico.getY(), getAncho(), getAlto());
 			  break;
 		  }
 		  

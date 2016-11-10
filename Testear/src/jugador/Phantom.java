@@ -1,27 +1,26 @@
 package jugador;
 
+
+
 public class Phantom implements Runnable{
-	
-	private Jugador j;
-	private Thread t;
-	
-	public Phantom(Jugador j){
-		this.j=j;
+    private Jugador j;
+    private Thread t;
+	public Phantom(Jugador jugador) {
+		j=jugador;
 		t=new Thread(this);
-	}
-	public void act(){
 		t.start();
 	}
+
+	
 	public void run() {
-		j.setI();
 		try {
-			t.sleep(10000);
+			Thread.sleep(15000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		j.setV();
 		
+		t.interrupt();
 	}
-	
+
 }

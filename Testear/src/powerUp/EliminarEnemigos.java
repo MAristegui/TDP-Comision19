@@ -3,6 +3,7 @@ package powerUp;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import gui.GUI;
 import jugador.Jugador;
 import main.Visitor;
 import mapa.celda;
@@ -17,6 +18,7 @@ public class EliminarEnemigos extends PowerUp{
 	
 	
 	public void AplicarPowerUP(Jugador J){
+		 GUI.playSound("eliminarEnemigos.wav");
 		J.eliminarEnemigos();
 		this.destruir();
 	}

@@ -4,6 +4,8 @@ import jugador.Jugador;
 
 import java.applet.Applet;
 import java.applet.AudioClip;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -16,11 +18,10 @@ import javax.swing.border.EmptyBorder;
 import mapa.map;
 public  class Juego {
 	private Jugador jugador;
-	private map mapa;
 	private static GUI frame;
 	private AudioClip clip;
 	public static void main(String[] args) {
-		Juego j=new Juego();
+		new Juego();
 		
 	
 }
@@ -54,9 +55,32 @@ public  class Juego {
 		}
 		jugador.mover(direccion);
    }
+   public void ganar(int puntaje){
+	   frame.dispose();
+	   GUI.playSound("ganaste.wav");
+	   final JFrame ganar=new JFrame("Battle City");
+	   ganar.setVisible(true);
+	   ganar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	   ganar.setBounds(100, 100, 598, 618);
+	   ganar.setLocationRelativeTo(null);
+	   JLayeredPane contentPane=new JLayeredPane();
+	   contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+	   ganar.setContentPane(contentPane);
+	   contentPane.setLayout(null);
+	   JLabel fondo=new JLabel(new ImageIcon(this.getClass().getResource("/resources/ganaste.gif")));
+  	   fondo.setBounds(0, 0, 592, 592);
+  	   ganar.add(fondo,new Integer(0));
+  	   ganar.setVisible(true);
+  	   ganar.setResizable(false);
+  	   JLabel puntajeLabel=new JLabel();
+  	   puntajeLabel.setText(""+puntaje);
+  	   puntajeLabel.setBounds(370, 495, 200, 40);
+  	   puntajeLabel.setFont(new Font("Serif", Font.PLAIN, 50));
+	   puntajeLabel.setForeground(Color.white);
+	   ganar.add(puntajeLabel,new Integer(1));
+   }
    public void gameOver(){
 	   frame.dispose();
-	   mapa=null;
 	   final JFrame gameOver=new JFrame("Battle City");
 	   gameOver.setVisible(true);
 	   gameOver.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -70,8 +94,7 @@ public  class Juego {
   	   fondo.setBounds(0, 0, 592, 592);
   	   gameOver.add(fondo,new Integer(0));
   	   gameOver.setVisible(true);
-  	   java.net.URL url2 = GUI.class.getResource("/resources/BComenzar.wav"); 
-       final AudioClip clip2 = Applet.newAudioClip(url2);
+  	   gameOver.setResizable(false);
        JButton empezar=new JButton();
 	   empezar.setIcon(new ImageIcon(this.getClass().getResource("/resources/boton_comenzar2.png")));
 	   empezar.setBounds(180,240,235,37);
@@ -79,9 +102,9 @@ public  class Juego {
 	   empezar.addActionListener(new ActionListener() { 
 		   public void actionPerformed(ActionEvent e) { 
 			 
-		       clip2.play();
+			   GUI.playSound("BComenzar.wav");
 		       gameOver.dispose();
-			   Juego j=new Juego();
+			   new Juego();
 			   
 		   } 
 		 } );
@@ -92,7 +115,7 @@ public  class Juego {
 	   salir.setVisible(true);
 	   salir.addActionListener(new ActionListener() { 
 		   public void actionPerformed(ActionEvent e) { 
-			   clip2.play();
+			   GUI.playSound("BComenzar.wav");
 			   gameOver.dispatchEvent(new WindowEvent(gameOver, WindowEvent.WINDOW_CLOSING));
 		   } 
 		 } );
@@ -120,12 +143,10 @@ public  class Juego {
 	   JLabel fondo=new JLabel(new ImageIcon(this.getClass().getResource("/resources/Title_Screen.png")));
   	   fondo.setBounds(0, 0, 592, 592);
   	   mainTitle.add(fondo,new Integer(0));
-  	  java.net.URL url2 = GUI.class.getResource("/resources/BComenzar.wav"); 
-      final AudioClip clip2 = Applet.newAudioClip(url2);
 	   empezar.addActionListener(new ActionListener() { 
 		   public void actionPerformed(ActionEvent e) { 
 			   clip.stop();
-		       clip2.play();
+			   GUI.playSound("BComenzar.wav");
 		       mainTitle.dispose();
 			   crearGUI();
 			   
@@ -141,7 +162,7 @@ public  class Juego {
 	   salir.setVisible(true);
 	   salir.addActionListener(new ActionListener() { 
 		   public void actionPerformed(ActionEvent e) { 
-			   clip2.play();
+			   GUI.playSound("BComenzar.wav");
 			   mainTitle.dispatchEvent(new WindowEvent(mainTitle, WindowEvent.WINDOW_CLOSING));
 		   } 
 		 } );
@@ -153,7 +174,7 @@ public  class Juego {
 	   ayuda.setVisible(true);
 	   ayuda.addActionListener(new ActionListener() { 
 		   public void actionPerformed(ActionEvent e) { 
-			   clip2.play();
+			   GUI.playSound("BComenzar.wav");
 			   salir.setEnabled(false);
 			   salir.setVisible(false);
 			   empezar.setEnabled(false);
@@ -170,7 +191,7 @@ public  class Juego {
 			   regresar.setVisible(true);
 			   regresar.addActionListener(new ActionListener() { 
 				   public void actionPerformed(ActionEvent e) { 
-					   clip2.play();
+					   GUI.playSound("BComenzar.wav");
 					   ayudaLabel.setVisible(false);
 					   regresar.setEnabled(false);
 					   regresar.setVisible(false);
@@ -192,7 +213,7 @@ public  class Juego {
 	   Random rnd=new Random();
 	   int r=rnd.nextInt(2);
 	   frame=new GUI(this);
-	   mapa=new map(frame,r,0,jugador,this);
+	   new map(frame,r,0,jugador,this);
 	   frame.setVisible(true);
    }
 }

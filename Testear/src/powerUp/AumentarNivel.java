@@ -1,7 +1,6 @@
 package powerUp;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
 import jugador.Jugador;
 import main.*;
 import mapa.*;

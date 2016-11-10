@@ -7,32 +7,22 @@ import jugador.Jugador;
 import main.Visitor;
 import mapa.celda;
 
-public class Invulnerable extends PowerUp {
+public class Invulnerable extends PowerUp{
 
-	private Thread t;
-	public Invulnerable(celda c,int prof) {
-		super(c,prof);
+	public Invulnerable(celda c, int prof) {
+		super(c, prof);
 		grafico=new JLabel();
-		grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/PowerUp_AD.gif")));
-		t=new Thread();
+		grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/pokeball.png")));
 	}
 
-	
-	
-	public void AplicarPowerUP(Jugador J){
-		System.out.println("HGOLACASCO");
+	public void AplicarPowerUP(Jugador J) {
 		J.setInvulnerable();
 		this.destruir();
 	}
 
-
-
-	
 	public boolean Accept(Visitor V) {
+		
 		return V.visitPowerUp(this);
 	}
-
-
-
 
 }

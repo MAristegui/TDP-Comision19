@@ -7,7 +7,7 @@ import obstaculos.Acero;
 public class Nivel4 extends State{
 	public Nivel4(Jugador jugador){
     	this.jugador=jugador;
-    	velocidad_jugador=20;
+    	velocidad_jugador=16;
     	velocidad_disparo=6;
  	    disparos_simultaneos=3;
  	    resistencia=4;

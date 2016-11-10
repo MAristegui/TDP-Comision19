@@ -1,9 +1,9 @@
 package disparo;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import gui.GUI;
 import jugador.Jugador;
 import main.Unidad;
 import main.Visitor;
@@ -22,13 +22,15 @@ public class DisparoPlayer extends Disparo{
 	   graficos[1]=new ImageIcon(this.getClass().getResource("/resources/disparo.png"));
 	   graficos[2]=new ImageIcon(this.getClass().getResource("/resources/disparo.png"));
 	   graficos[3]=new ImageIcon(this.getClass().getResource("/resources/disparo.png"));
-  	   DisparoRun d=new DisparoRun(this,dirActual);
+  	   new DisparoRun(this,dirActual);
     }
 
     	 public void destruir(){
       	   super.destruir();
+      	   
       	   Jugador jug=(Jugador)j;
       	   jug.restarDisparosEnEjecucion();
+      	 GUI.playSound("disparoColision.wav");
       	   
          }
     	 public boolean Accept(Visitor V){

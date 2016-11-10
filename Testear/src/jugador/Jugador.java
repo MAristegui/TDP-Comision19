@@ -1,9 +1,9 @@
 package jugador;
 import mapa.celda;
 import obstaculos.Acero;
-
 import javax.swing.*;
 
+import gui.GUI;
 import main.Unidad;
 import main.Visitor;
 public class Jugador extends Unidad{
@@ -36,6 +36,10 @@ public class Jugador extends Unidad{
      public void sumarPuntaje(int i){
     	 cell.aumentarPuntaje(i);
      }
+     public void setVisitor(Visitor v){
+    	 V=v;
+     }
+
      public void setVidas(int v){
     	 vidas=v;
     	 cell.cambiarVidas(vidas);
@@ -50,10 +54,19 @@ public class Jugador extends Unidad{
     	 return nivel.getVelocidad();
      }
      public void disparar(){
+    	 
     	 nivel.disparar();
      }
+     public void setInvulnerable(){
+    	 setVisitor(new VisitorJugadorInvulnerable(this));
+    	 invulnerable.setIcon(new ImageIcon(this.getClass().getResource("/resources/invulnerable.gif")));
+    	 invulnerable.setBounds(grafico.getX(),grafico.getY(),30,30);
+    	 new Phantom(this);
+     }
      public void impact(){
+    	 if(invulnerable.getIcon()==null)
     	 if(nivel.impact()){
+    		 GUI.playSound("matarEnemigo.wav");
     		 setIsRunning(false);
     		 if(t1!=null)
     		 t1.interrupt(); //Detiene el hilo del movimiento para que no se mueva graficamente cuando respawnea
@@ -71,14 +84,10 @@ public class Jugador extends Unidad{
     	 nivel=s;
      }
      public void lvlUp(){
-/*    	 try{
-	          URL url = State.class.getResource("/resources/Power_up.wav"); 
-	             AudioClip clip = Applet.newAudioClip(url);
-	             clip.play();
-	          }catch (Exception e){;}
-*/    	 State s=nivel.lvlUp();
+    	 State s=nivel.lvlUp();
     	 if(s!=null){
     		 nivel=s;
+    		 GUI.playSound("evolucionar.wav");
     		 setGraficos();
     	 }
      }
@@ -97,12 +106,14 @@ public class Jugador extends Unidad{
      public void setGraficos(){
     	 nivel.setGraficos(graficos,grafico);
      }
-     public void setI(){
-    	 
-     }
+
      public void setV(){
-    	 
+    	 setVisitor(new VisitorJugador(this));
+ 		 getGraficoInvulnerable().setIcon(null);
      }
+	public JLabel getGraficoInvulnerable() {
+		return invulnerable;
+	}
      
 
 }

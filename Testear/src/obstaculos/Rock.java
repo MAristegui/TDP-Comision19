@@ -1,11 +1,5 @@
 package obstaculos;
-//import java.applet.Applet;
-//import java.applet.AudioClip;
-//import java.net.URL;
-
 import javax.swing.*;
-
-//import jugador.State;
 import main.Visitor;
 import mapa.celda;
 public class Rock extends obstaculo implements Runnable{
@@ -27,11 +21,6 @@ public class Rock extends obstaculo implements Runnable{
     }
     public void restarResistencia(){
     	if(resistencia==1){
-    		/*try{
-  	          URL url = State.class.getResource("/resources/roca_destruida.wav"); 
-  	             AudioClip clip = Applet.newAudioClip(url);
-  	             clip.play();
-  	          }catch (Exception e){;}*/
     		destruir();
     	}else{
     		resistencia--;

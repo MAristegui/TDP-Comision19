@@ -4,8 +4,13 @@ import javax.swing.border.EmptyBorder;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.BufferedInputStream;
+import java.io.InputStream;
 
 import javax.swing.JLayeredPane;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 import main.Juego;
 
@@ -88,7 +93,7 @@ public class GUI extends JFrame implements Runnable {
 		
 		t=new Thread(this);
 		t.start();
-		this.j=j;
+		GUI.j=j;
 		
 		
 	}
@@ -123,5 +128,21 @@ public void run() {
 	}
 	
 }
+public static synchronized void playSound(final String url) {
+	  new Thread(new Runnable() {
+	    public void run() {
+	      try {
+	        Clip clip = AudioSystem.getClip();
+	        InputStream audioSrc = getClass().getResourceAsStream("/resources/" + url);
+	        InputStream bufferedIn = new BufferedInputStream(audioSrc);
+	        AudioInputStream inputStream = AudioSystem.getAudioInputStream(bufferedIn);
+	        clip.open(inputStream);
+	        clip.start(); 
+	      } catch (Exception e) {
+	        System.err.println(e.getMessage());
+	      }
+	    }
+	  }).start();
+	}
 }
 
