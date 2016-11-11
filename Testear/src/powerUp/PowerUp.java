@@ -1,4 +1,5 @@
 package powerUp;
+import gui.GUI;
 import jugador.Jugador;
 import mapa.*;
 import main.*;
@@ -6,6 +7,7 @@ import main.*;
 public abstract class PowerUp extends gameObject {
 	
 	protected PowerUp(celda c,int prof){
+		GUI.playSound("aparecePowerUp.wav");
 		cell=c;
 		profundidad=prof;
 	}

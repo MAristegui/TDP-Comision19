@@ -1,5 +1,7 @@
 package powerUp;
 
+import gui.GUI;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -16,6 +18,7 @@ public class Invulnerable extends PowerUp{
 	}
 
 	public void AplicarPowerUP(Jugador J) {
+		GUI.playSound("Invulnerable.wav");
 		J.setInvulnerable();
 		this.destruir();
 	}

@@ -18,7 +18,7 @@ public class AumentarVida extends PowerUp {
 	
 	
 	public void AplicarPowerUP(Jugador J){
-		GUI.playSound("aumentarVida.wav");
+		GUI.playSound("VidaUp.wav");
 		J.setVidas(J.getVidas()+1);
 		this.destruir();
 	}

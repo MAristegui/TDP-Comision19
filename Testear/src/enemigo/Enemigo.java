@@ -1,4 +1,5 @@
 package enemigo;
+import gui.GUI;
 import main.Unidad;
 import main.Visitor;
 import mapa.celda;
@@ -10,6 +11,7 @@ public abstract class Enemigo extends Unidad{
 	 private int ancho;
 	 protected EnemigoRun e;
 	    public Enemigo(celda c, int profundidad){
+	    	GUI.playSound("EnemigoAparece.wav");
 	    	V=new VisitorEnemigo(this);
 	    	alto=26;
 	    	ancho=26;
@@ -48,6 +50,7 @@ public abstract class Enemigo extends Unidad{
 	}
 	
 	public void destruir(){
+		GUI.playSound("EnemigoMuere.wav");
 		super.destruir();
 		cell.destruirEnemigo(this);
 	}

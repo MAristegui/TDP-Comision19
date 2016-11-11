@@ -19,7 +19,7 @@ import mapa.map;
 public  class Juego {
 	private Jugador jugador;
 	private static GUI frame;
-	private AudioClip clip;
+	private AudioClip clip, clipGO;
 	public static void main(String[] args) {
 		new Juego();
 		
@@ -91,6 +91,10 @@ public  class Juego {
 	   gameOver.setContentPane(contentPane);
 	   contentPane.setLayout(null);
 	   JLabel fondo=new JLabel(new ImageIcon(this.getClass().getResource("/resources/gameOver.png")));
+	   
+	   java.net.URL url = GUI.class.getResource("/resources/Perdiste.wav"); 
+       clipGO = Applet.newAudioClip(url);
+       clipGO.loop();
   	   fondo.setBounds(0, 0, 592, 592);
   	   gameOver.add(fondo,new Integer(0));
   	   gameOver.setVisible(true);
@@ -101,10 +105,11 @@ public  class Juego {
 	   empezar.setVisible(true);
 	   empezar.addActionListener(new ActionListener() { 
 		   public void actionPerformed(ActionEvent e) { 
-			 
+			  
 			   GUI.playSound("BComenzar.wav");
 		       gameOver.dispose();
 			   new Juego();
+			   clipGO.stop();
 			   
 		   } 
 		 } );
@@ -114,15 +119,18 @@ public  class Juego {
 	   salir.setBounds(180,340,235,37);
 	   salir.setVisible(true);
 	   salir.addActionListener(new ActionListener() { 
-		   public void actionPerformed(ActionEvent e) { 
+		   public void actionPerformed(ActionEvent e) {
+			  
 			   GUI.playSound("BComenzar.wav");
 			   gameOver.dispatchEvent(new WindowEvent(gameOver, WindowEvent.WINDOW_CLOSING));
 		   } 
 		 } );
 	   gameOver.add(salir,new Integer(2));
 	   
+	   
    }
    public void pantallaPrincipal(){
+	   
 	   java.net.URL url = GUI.class.getResource("/resources/InicioS.wav"); 
        clip = Applet.newAudioClip(url);
        clip.loop();
