@@ -46,6 +46,7 @@ public class map implements Runnable{
     private int sprite;
     private Thread t;
     private AudioClip clip;
+    private int puntajeAux;
     public map(GUI migui,int sprites,int score,Jugador player,Juego juego){
     	 /*El mapa tiene una longitud de 27x27 celdas de 16 pixeles cada una.*/
    	 java.net.URL url = GUI.class.getResource("/resources/FondoS.wav"); 
@@ -55,6 +56,7 @@ public class map implements Runnable{
     	 sprite=sprites;
     	 this.juego=juego;
     	 this.score=score;
+    	 puntajeAux=score;
     	 this.player=player;
     	 gui.setResizable(false);
     	 celdas=new celda[27][27];
@@ -302,9 +304,12 @@ public class map implements Runnable{
   				}
   		   p=(PowerUp) objetos2[4];
   		   JLabel graf2=p.getGrafico();
+  		   JLabel grafBrillo=p.getGraficoBrillo();
+  		   grafBrillo.setBounds(32+16*x, 128+16*y, 16, 16);
   	  	   graf2.setBounds(32+16*x, 128+16*y, 16, 16);
   	  	   GUI.playSound("aparecePowerUp.wav");
-  	  	   gui.add(graf2,new Integer(4));
+  	  	   gui.add(graf2,new Integer(2));
+  	  	   gui.add(grafBrillo,new Integer(4));
   		   	break;
   			}
   		else
@@ -338,12 +343,22 @@ public class map implements Runnable{
   
      public void aumentarPuntaje(int i){
     	 score+=i;
+    	 puntajeAux+=i;
+    	 if(puntajeAux>=2000){
+    		 player.lvlUp();
+    		 puntajeAux-=2000;
+    	 }
     	 actualizarPuntaje();
      }
      public void destruirEnemigo(Enemigo e){
     	 Enemigos_matados++;
     	 actualizarEnemigosRestantes();
     	 score=score+e.getPuntaje();
+    	 puntajeAux+=e.getPuntaje();
+    	 if(puntajeAux>=2000){
+    		 player.lvlUp();
+    		 puntajeAux-=2000;
+    	 }
     	 actualizarPuntaje();
     	 EnemigosActuales.remove(e);
     	 matados++;

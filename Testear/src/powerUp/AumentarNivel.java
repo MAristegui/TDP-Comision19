@@ -10,7 +10,7 @@ public class AumentarNivel extends PowerUp {
 	public AumentarNivel(celda c,int prof) {
 		super(c,prof);
 		grafico=new JLabel();
-		grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/PowerUp_AD.gif")));
+		grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/PowerUp_AD.png")));
 	}
 
 	

@@ -90,7 +90,7 @@ public  class Juego {
 	   contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 	   gameOver.setContentPane(contentPane);
 	   contentPane.setLayout(null);
-	   JLabel fondo=new JLabel(new ImageIcon(this.getClass().getResource("/resources/gameOver.png")));
+	   JLabel fondo=new JLabel(new ImageIcon(this.getClass().getResource("/resources/gameOver.gif")));
 	   
 	   java.net.URL url = GUI.class.getResource("/resources/Perdiste.wav"); 
        clipGO = Applet.newAudioClip(url);
@@ -101,7 +101,7 @@ public  class Juego {
   	   gameOver.setResizable(false);
        JButton empezar=new JButton();
 	   empezar.setIcon(new ImageIcon(this.getClass().getResource("/resources/boton_comenzar2.png")));
-	   empezar.setBounds(180,240,235,37);
+	   empezar.setBounds(180,450,235,37);
 	   empezar.setVisible(true);
 	   empezar.addActionListener(new ActionListener() { 
 		   public void actionPerformed(ActionEvent e) { 
@@ -116,7 +116,7 @@ public  class Juego {
 	   gameOver.add(empezar,new Integer(2));
 	   JButton salir=new JButton();
 	   salir.setIcon(new ImageIcon(this.getClass().getResource("/resources/boton_salir2.png")));
-	   salir.setBounds(180,340,235,37);
+	   salir.setBounds(180,490,235,37);
 	   salir.setVisible(true);
 	   salir.addActionListener(new ActionListener() { 
 		   public void actionPerformed(ActionEvent e) {

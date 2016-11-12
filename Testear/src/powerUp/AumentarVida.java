@@ -12,13 +12,13 @@ public class AumentarVida extends PowerUp {
 	public AumentarVida(celda c,int prof) {
 		super(c,prof);
 		grafico=new JLabel();
-		grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/PowerUp_AV.gif")));
+		grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/PowerUp_AV.png")));
 	}
 
 	
 	
 	public void AplicarPowerUP(Jugador J){
-		GUI.playSound("VidaUp.wav");
+		GUI.playSound("aumentarVida.wav");
 		J.setVidas(J.getVidas()+1);
 		this.destruir();
 	}

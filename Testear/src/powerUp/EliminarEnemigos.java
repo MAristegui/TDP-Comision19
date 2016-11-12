@@ -12,7 +12,7 @@ public class EliminarEnemigos extends PowerUp{
 	public EliminarEnemigos(celda c,int prof) {
 		super(c,prof);
 		grafico=new JLabel();
-		grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/PowerUp_EE.gif")));
+		grafico.setIcon(new ImageIcon(this.getClass().getResource("/resources/PowerUp_EE.png")));
 	}
 
 	
